@@ -28,6 +28,7 @@
       <button data-tab="metas">🎯 Metas</button>
       <button data-tab="relatorio">📋 Relatório</button>
       <button data-tab="comissao">💎 Comissão</button>
+      <button data-tab="configuracoes">⚙️ Configurações</button>
     </nav>
     <div class="sync-card">
       <span id="netDot"></span>
@@ -168,6 +169,66 @@
       <div class="grid two">
         <article class="panel"><div class="panel-head"><div><span class="eyebrow">Comissão</span><h3>Comissão por semana</h3></div></div><canvas id="commissionChart" height="300"></canvas></article>
         <article class="panel"><div class="panel-head"><div><span class="eyebrow">Crescimento</span><h3>Recebimento semanal</h3></div></div><canvas id="receivedChart" height="300"></canvas></article>
+      </div>
+    </section>
+
+
+    <section id="configuracoes" class="tab">
+      <div class="grid two">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow">Configurações</span>
+              <h3>Metas comerciais</h3>
+            </div>
+            <button class="btn" onclick="saveConfig()">Salvar configurações</button>
+          </div>
+          <div class="settings-grid">
+            <label>Meta semanal de faturamento
+              <input id="cfgWeeklyRevenue" type="number" min="0" step="100">
+            </label>
+            <label>Meta mensal de faturamento
+              <input id="cfgMonthlyRevenue" type="number" min="0" step="100">
+            </label>
+            <label>Meta de clientes
+              <input id="cfgClientGoal" type="number" min="0" step="1">
+            </label>
+            <label>Meta de recebimento
+              <input id="cfgReceiveGoal" type="number" min="0" step="100">
+            </label>
+            <label>Comissão %
+              <input id="cfgCommission" type="number" min="0" step="0.5">
+            </label>
+            <label>Intervalo de sincronização (min)
+              <input id="cfgSync" type="number" min="1" step="1">
+            </label>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow">Identidade visual</span>
+              <h3>Paleta Collin personalizável</h3>
+            </div>
+            <button class="btn secondary" onclick="resetConfig()">Restaurar padrões</button>
+          </div>
+          <div class="color-settings">
+            <label>Primária <input id="cfgPrimary" type="color"></label>
+            <label>Sucesso <input id="cfgSuccess" type="color"></label>
+            <label>Aviso <input id="cfgWarning" type="color"></label>
+            <label>Erro <input id="cfgError" type="color"></label>
+            <label>Info <input id="cfgInfo" type="color"></label>
+            <label>Secundária <input id="cfgSecondary" type="color"></label>
+          </div>
+          <div class="config-preview">
+            <span class="status pago">Pago</span>
+            <span class="status cobrar">Atenção</span>
+            <span class="status nao">Atrasado</span>
+            <span class="status acomp">Informação</span>
+          </div>
+          <p class="config-note">As configurações ficam salvas no navegador via localStorage. No modo offline, o dashboard continua usando os últimos dados carregados.</p>
+        </article>
       </div>
     </section>
 

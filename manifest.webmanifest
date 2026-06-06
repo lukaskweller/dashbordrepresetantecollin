@@ -1,0 +1,16 @@
+{
+  "name": "Collin Professional Dashboard 4.0 Plus",
+  "short_name": "Collin 4.0",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#faf7f6",
+  "theme_color": "#C89080",
+  "description": "Dashboard executivo Collin Professional com PWA, WhatsApp e relatórios.",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

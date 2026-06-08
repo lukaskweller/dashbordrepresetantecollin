@@ -7,5 +7,3 @@ Atualizações:
 - Visitas destaca clientes com menos de R$150 em carteira.
 - Aba Performance com Evolução semanal e Projeção final do mês.
 - Base atualizada pela planilha enviada.
-
-Suba todos os arquivos na raiz do repositório GitHub Pages e abra com ?v=52.

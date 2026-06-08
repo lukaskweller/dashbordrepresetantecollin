@@ -1,34 +1,29 @@
-# Collin Professional Dashboard 4.0 Plus
+# Collin Professional Dashboard 4.3 Corrigido
 
-Versão profissional para GitHub Pages com:
-- 8 abas funcionais
-- Paleta Collin #C89080
-- Cards executivos
-- Gráficos em canvas
-- Clientes clicáveis
-- Modal/ficha de cliente
-- Botão WhatsApp
-- Botão copiar cobrança
-- Botão Google Maps
-- Relatório WhatsApp e relatório completo
-- Metas 16/40 e +6 clientes na semana
-- Comissão estimada
-- PWA/offline
+Correções aplicadas:
+- Clientes = todos os clientes cadastrados na planilha
+- Ativos = clientes pagos + clientes a pagar
+- Inativos = demais clientes
+- Recebido R$ = soma das parcelas pagas na semana
+- Resumo inteligente corrigido:
+  - Maior devedor
+  - Média de compras
+  - Maior parcela
+  - Maior cliente por bairro / Forquilinhas
+- Metas atualizadas:
+  - Recebimento semanal: R$ 6.000
+  - Recebimento mensal: R$ 20.000
+  - Salário meta mensal: R$ 4.500
+  - Meta clientes: 40
+  - Clientes abertos: 16
+- Gráfico de progressão de salário/comissão:
+  - Semana 1: R$ 991
+  - Semana 2: R$ 1.073
+  - Semana 3: R$ 1.105
+  - Semana 4: R$ 1.215
+  - Semana 5: calculada automaticamente pelo recebido atual da planilha
+- AutoSync com Google Sheets CSV
+- Cache offline/PWA
 
-## Como atualizar no GitHub Pages
-1. Extraia este ZIP.
-2. Abra seu repositório atual no GitHub.
-3. Substitua os arquivos da raiz por estes:
-   - index.html
-   - styles.css
-   - app.js
-   - manifest.webmanifest
-   - service-worker.js
-   - data/
-   - assets/
-4. Clique em Commit changes.
-5. Aguarde o GitHub Pages atualizar.
-
-## Observação sobre WhatsApp
-A planilha atual não possui telefone. O botão WhatsApp abre a mensagem pronta para você escolher o contato manualmente.
-Quando adicionar uma coluna Telefone, o dashboard pode ser ajustado para abrir direto na cliente.
+## Como atualizar no GitHub
+Substitua todos os arquivos do repositório pelos arquivos deste ZIP e clique em Commit changes.

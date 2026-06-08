@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>Collin Professional Dashboard 4.0 Plus</title>
+  <title>Collin Professional Dashboard 4.3</title>
   <meta name="description" content="Dashboard executivo para representante Collin Professional">
   <meta name="theme-color" content="#C89080">
   <link rel="manifest" href="manifest.webmanifest">
@@ -16,7 +16,7 @@
       <div class="brand-mark">CP</div>
       <div>
         <strong>Collin Professional</strong>
-        <span>Dashboard 4.0 Plus</span>
+        <span>Dashboard 4.3</span>
       </div>
     </div>
     <nav id="nav">
@@ -28,6 +28,7 @@
       <button data-tab="metas">🎯 Metas</button>
       <button data-tab="relatorio">📋 Relatório</button>
       <button data-tab="comissao">💎 Comissão</button>
+      <button data-tab="configuracoes">⚙️ Configurações</button>
     </nav>
     <div class="sync-card">
       <span id="netDot"></span>
@@ -52,9 +53,9 @@
 
     <section class="hero">
       <div>
-        <span class="hero-pill">Paleta Collin • PWA • GitHub Pages</span>
-        <h2>Controle semanal de clientes, vendas, metas e cobrança</h2>
-        <p>Uma versão executiva para apresentar em reunião empresarial, acompanhar sua carteira e acionar clientes direto pelo WhatsApp.</p>
+        <span class="hero-pill">AutoSync Google Sheets • PWA • GitHub Pages</span>
+        <h2>Controle semanal de clientes, recebimentos, metas e comissão</h2>
+        <p>Corrigido para refletir clientes cadastrados, ativos reais, recebimento semanal por parcelas pagas e progressão salarial.</p>
       </div>
       <div class="hero-metric">
         <small>Meta Clientes</small>
@@ -71,7 +72,7 @@
           <canvas id="statusChart" height="260"></canvas>
         </article>
         <article class="panel">
-          <div class="panel-head"><div><span class="eyebrow">Destaques</span><h3>Resumo inteligente</h3></div></div>
+          <div class="panel-head"><div><span class="eyebrow">Resumo inteligente</span><h3>Indicadores comerciais</h3></div></div>
           <div id="smartCards" class="smart-grid"></div>
         </article>
       </div>
@@ -139,8 +140,18 @@
           <div class="goal-box"><div class="ring"><svg viewBox="0 0 160 160"><circle class="ring-bg" cx="80" cy="80" r="68"></circle><circle id="clientRing" class="ring-fill" cx="80" cy="80" r="68"></circle></svg><div><strong id="clientGoalText"></strong><small>clientes</small></div></div><div id="goalInsights"></div></div>
         </article>
         <article class="panel">
-          <div class="panel-head"><div><span class="eyebrow">Faturamento</span><h3>Meta mensal / semanal</h3></div></div>
+          <div class="panel-head"><div><span class="eyebrow">Recebimento</span><h3>Meta semanal e mensal</h3></div></div>
           <div id="revenueGoals" class="goal-list"></div>
+        </article>
+      </div>
+      <div class="grid two">
+        <article class="panel">
+          <div class="panel-head"><div><span class="eyebrow">Salário</span><h3>Progressão de salário / comissão</h3></div></div>
+          <canvas id="salaryChart" height="300"></canvas>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><div><span class="eyebrow">Meta salarial</span><h3>Meta R$ 4.500/mês</h3></div></div>
+          <div id="salaryGoals" class="goal-list"></div>
         </article>
       </div>
       <article class="panel">
@@ -167,7 +178,35 @@
       <div class="kpi-grid" id="commissionKpis"></div>
       <div class="grid two">
         <article class="panel"><div class="panel-head"><div><span class="eyebrow">Comissão</span><h3>Comissão por semana</h3></div></div><canvas id="commissionChart" height="300"></canvas></article>
-        <article class="panel"><div class="panel-head"><div><span class="eyebrow">Crescimento</span><h3>Recebimento semanal</h3></div></div><canvas id="receivedChart" height="300"></canvas></article>
+        <article class="panel"><div class="panel-head"><div><span class="eyebrow">Recebimento</span><h3>Recebimento por semana</h3></div></div><canvas id="receivedChart" height="300"></canvas></article>
+      </div>
+    </section>
+
+    <section id="configuracoes" class="tab">
+      <div class="grid two">
+        <article class="panel">
+          <div class="panel-head"><div><span class="eyebrow">Configurações</span><h3>Metas comerciais</h3></div><button class="btn" onclick="saveConfig()">Salvar</button></div>
+          <div class="settings-grid">
+            <label>Meta recebimento semanal <input id="cfgWeeklyRevenue" type="number" min="0" step="100"></label>
+            <label>Meta recebimento mensal <input id="cfgMonthlyRevenue" type="number" min="0" step="100"></label>
+            <label>Meta clientes <input id="cfgClientGoal" type="number" min="0" step="1"></label>
+            <label>Meta salário mensal <input id="cfgSalaryGoal" type="number" min="0" step="100"></label>
+            <label>Comissão % <input id="cfgCommission" type="number" min="0" step="0.5"></label>
+            <label>Intervalo sync (min) <input id="cfgSync" type="number" min="1" step="1"></label>
+          </div>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><div><span class="eyebrow">Identidade visual</span><h3>Paleta Collin</h3></div><button class="btn secondary" onclick="resetConfig()">Restaurar</button></div>
+          <div class="color-settings">
+            <label>Primária <input id="cfgPrimary" type="color"></label>
+            <label>Sucesso <input id="cfgSuccess" type="color"></label>
+            <label>Aviso <input id="cfgWarning" type="color"></label>
+            <label>Erro <input id="cfgError" type="color"></label>
+            <label>Info <input id="cfgInfo" type="color"></label>
+            <label>Secundária <input id="cfgSecondary" type="color"></label>
+          </div>
+          <p class="config-note">As configurações ficam salvas no navegador. O dashboard usa Google Sheets quando online e cache quando offline.</p>
+        </article>
       </div>
     </section>
 

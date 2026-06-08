@@ -2,64 +2,124 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Collin Professional Dashboard 5.0</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Collin Professional Dashboard 5.2</title>
 <meta name="theme-color" content="#C89080">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="app-shell">
-  <aside class="sidebar">
-    <div class="brand"><div class="brand-logo">CP</div><div><strong>Collin Professional</strong><span>Dashboard 5.0 Executive</span></div></div>
-    <nav id="nav">
-      <button class="active" data-tab="alertas">🚨 Alertas</button>
-      <button data-tab="clientes">👥 Clientes</button>
-      <button data-tab="bairros">🗺️ Bairros</button>
-      <button data-tab="cobranca">💰 Cobrança</button>
-      <button data-tab="visitas">📞 Visitas</button>
-      <button data-tab="metas">🎯 Metas</button>
-      <button data-tab="comissao">💎 Comissão</button>
-      <button data-tab="relatorio">📋 Relatório</button>
-    </nav>
-    <div class="sync-box"><span id="netDot"></span><div><b id="netText">Carregando</b><small id="syncText">Preparando dashboard...</small></div></div>
-  </aside>
-  <main>
-    <header class="topbar">
-      <div><span class="eyebrow">Representante Collin Professional</span><h1 id="pageTitle">Alertas Executivos</h1></div>
-      <div class="top-actions"><button class="btn secondary" id="syncBtn">Sincronizar Google Sheets</button><button class="btn" onclick="window.print()">Exportar PDF</button></div>
-    </header>
-    <section class="hero">
-      <div><span class="hero-pill">Google Sheets AutoSync • CRM • Relatório Semanal</span><h2>Dashboard executivo para reunião e rotina comercial</h2><p>Clientes, carteira, cobrança, bairros, metas, visitas, comissão e relatório em uma tela profissional.</p></div>
-      <div class="hero-metric"><small>Meta de clientes</small><strong id="heroGoal">16/40</strong><div class="mini-progress"><span id="heroProgress"></span></div><em id="heroSync">Atualizando...</em></div>
-    </section>
-    <section id="alertas" class="tab active">
-      <div class="kpi-grid" id="kpiGrid"></div>
-      <div class="grid two"><article class="panel"><div class="panel-head"><span class="eyebrow">Status</span><h2>Distribuição da carteira</h2></div><canvas id="statusChart" height="280"></canvas></article><article class="panel"><div class="panel-head"><span class="eyebrow">Resumo inteligente</span><h2>Indicadores-chave</h2></div><div id="smartGrid" class="smart-grid"></div></article></div>
-      <article class="panel"><div class="panel-head"><span class="eyebrow">Prioridade</span><h2>Top clientes para cobrança</h2></div><div class="table-wrap"><table><thead><tr><th>Cliente</th><th>Bairro</th><th>Saldo</th><th>Status</th><th>Ações</th></tr></thead><tbody id="topRows"></tbody></table></div></article>
-    </section>
-    <section id="clientes" class="tab">
-      <article class="panel"><div class="panel-head"><div><span class="eyebrow">CRM</span><h2>Clientes cadastrados</h2></div><div class="filters"><input id="clientSearch" placeholder="Buscar cliente ou bairro..."><select id="statusFilter"><option value="todos">Todos status</option></select></div></div><div class="table-wrap"><table><thead><tr><th>Cliente</th><th>Bairro</th><th>Carteira</th><th>Devedor</th><th>Parcela</th><th>Status</th><th>Ações</th></tr></thead><tbody id="clientRows"></tbody></table></div><div class="pager"><button class="btn secondary" id="prevPage">Anterior</button><span id="pageInfo"></span><button class="btn secondary" id="nextPage">Próxima</button></div></article>
-    </section>
-    <section id="bairros" class="tab">
-      <div class="grid two"><article class="panel"><div class="panel-head"><span class="eyebrow">Território</span><h2>Top bairros por carteira</h2></div><canvas id="bairroBarChart" height="360"></canvas></article><article class="panel"><div class="panel-head"><span class="eyebrow">Distribuição</span><h2>Clientes por bairro</h2></div><canvas id="bairroPieChart" height="360"></canvas></article></div>
-      <article class="panel"><div class="panel-head"><span class="eyebrow">Ranking</span><h2>Bairros consolidados</h2></div><div id="bairroCards" class="cards-list"></div></article>
-    </section>
-    <section id="cobranca" class="tab">
-      <article class="panel"><div class="panel-head"><div><span class="eyebrow">Cobrança inteligente</span><h2>Prioridade de contato</h2></div><div class="filters"><button class="chip active" data-priority="todos">Todos</button><button class="chip danger" data-priority="Alta">Alta</button><button class="chip warning" data-priority="Média">Média</button><button class="chip success" data-priority="Baixa">Baixa</button></div></div><div id="chargeCards" class="cards-list"></div></article>
-    </section>
-    <section id="visitas" class="tab"><div class="section-title"><span class="eyebrow">Revisita comercial</span><h2>Clientes próximos da quitação</h2></div><div id="visitCards" class="cards-list"></div></section>
-    <section id="metas" class="tab">
-      <div class="grid two"><article class="panel"><div class="panel-head"><div><span class="eyebrow">Meta clientes</span><h2>Abertura de carteira</h2></div><b id="clientGoalBadge" class="badge">40%</b></div><div class="goal-layout"><div class="ring"><svg viewBox="0 0 160 160"><circle class="ring-bg" cx="80" cy="80" r="68"></circle><circle class="ring-fill" id="clientRing" cx="80" cy="80" r="68"></circle></svg><div><strong id="clientGoalText">16/40</strong><small>clientes</small></div></div><div id="goalInsights" class="goal-list"></div></div></article><article class="panel"><div class="panel-head"><span class="eyebrow">Recebimento</span><h2>Metas R$ 6k/semana e R$ 20k/mês</h2></div><div id="receiveGoals" class="goal-list"></div></article></div>
-      <div class="grid two"><article class="panel"><div class="panel-head"><span class="eyebrow">Salário</span><h2>Progressão de comissão</h2></div><canvas id="salaryChart" height="320"></canvas></article><article class="panel"><div class="panel-head"><span class="eyebrow">Clientes</span><h2>Evolução semanal</h2></div><canvas id="weeklyChart" height="320"></canvas></article></div>
-    </section>
-    <section id="comissao" class="tab"><div class="kpi-grid" id="commissionGrid"></div><div class="grid two"><article class="panel"><div class="panel-head"><span class="eyebrow">Comissão</span><h2>Últimas semanas</h2></div><canvas id="commissionChart" height="320"></canvas></article><article class="panel"><div class="panel-head"><span class="eyebrow">Recebimento</span><h2>Recebimento por semana</h2></div><canvas id="receivedChart" height="320"></canvas></article></div></section>
-    <section id="relatorio" class="tab"><div class="grid two"><article class="panel"><div class="panel-head"><span class="eyebrow">WhatsApp</span><h2>Relatório curto</h2></div><pre id="shortReport"></pre><div class="actions"><button class="btn" onclick="copyReport('short')">Copiar</button><a class="btn whatsapp" id="reportWhats" target="_blank">Abrir WhatsApp</a></div></article><article class="panel"><div class="panel-head"><span class="eyebrow">Executivo</span><h2>Relatório completo</h2></div><pre id="fullReport"></pre><button class="btn" onclick="copyReport('full')">Copiar completo</button></article></div></section>
-    <footer><span>Collin Professional Dashboard 5.0</span><span id="footerUpdate"></span></footer>
-  </main>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-mark">CP</div>
+    <div><strong>Collin Professional</strong><span>Executive 5.2</span></div>
+  </div>
+  <nav id="nav">
+    <button data-tab="home" class="active">🏠 Home</button>
+    <button data-tab="clientes">👥 Clientes</button>
+    <button data-tab="bairros">🗺️ Bairros</button>
+    <button data-tab="cobranca">🚨 Cobrança</button>
+    <button data-tab="visitas">📞 Visitas</button>
+    <button data-tab="metas">🎯 Metas</button>
+    <button data-tab="comissao">💰 Comissão</button>
+    <button data-tab="performance">📈 Performance</button>
+    <button data-tab="relatorio">📋 Relatório</button>
+  </nav>
+  <div class="sync-card">
+    <span id="netDot"></span>
+    <div><b id="netText">Carregando</b><small id="syncText">Dados locais seguros</small></div>
+  </div>
+</aside>
+
+<main>
+<header class="topbar">
+  <div><span class="eyebrow">Representante Collin Professional</span><h1 id="pageTitle">Dashboard Executivo</h1></div>
+  <div class="top-actions"><button class="btn secondary" id="syncBtn">Recarregar dados</button><button class="btn" onclick="window.print()">Exportar PDF</button></div>
+</header>
+
+<section class="hero">
+  <div>
+    <span class="hero-pill">Versão 5.2 • Base atualizada • 103 clientes</span>
+    <h2>Gestão completa de carteira, cobrança, visitas, comissão e performance</h2>
+    <p>Comissão atual: 15% sobre parcelas pagas + R$ 375,00 de ajuda de custo.</p>
+  </div>
+  <div class="hero-metric"><small>Meta Clientes</small><strong id="heroGoal">16/40</strong><div class="mini-progress"><span id="heroProgress"></span></div></div>
+</section>
+
+<section id="home" class="tab active">
+  <div class="kpi-grid" id="homeKpis"></div>
+  <div class="grid two">
+    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Status</span><h3>Distribuição da carteira</h3></div></div><canvas id="statusChart" height="260"></canvas></article>
+    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Resumo inteligente</span><h3>Indicadores comerciais</h3></div></div><div class="smart-grid" id="smartCards"></div></article>
+  </div>
+</section>
+
+<section id="clientes" class="tab">
+  <article class="panel">
+    <div class="panel-head"><div><span class="eyebrow">CRM</span><h3>Clientes cadastrados</h3></div><input id="searchInput" placeholder="Buscar cliente, bairro ou status..."></div>
+    <div class="table-wrap"><table><thead><tr><th>Cliente</th><th>Bairro</th><th>Carteira</th><th>Devedor</th><th>Parcela</th><th>Status</th><th>Ações</th></tr></thead><tbody id="clientRows"></tbody></table></div>
+  </article>
+</section>
+
+<section id="bairros" class="tab">
+  <div class="grid two">
+    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Ordem decrescente</span><h3>Top bairros por carteira</h3></div></div><canvas id="bairroChart" height="360"></canvas></article>
+    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Ranking consolidado</span><h3>Bairros consolidados</h3></div></div><div class="cards-list" id="bairroCards"></div></article>
+  </div>
+</section>
+
+<section id="cobranca" class="tab">
+  <article class="panel">
+    <div class="panel-head"><div><span class="eyebrow">Prioridade</span><h3>Clientes que não pagaram na semana</h3></div></div>
+    <div class="cards-list" id="cobrancaCards"></div>
+  </article>
+</section>
+
+<section id="visitas" class="tab">
+  <article class="panel">
+    <div class="panel-head"><div><span class="eyebrow">Recompra</span><h3>Clientes com menos de R$ 150 em carteira</h3></div></div>
+    <div class="cards-list" id="visitaCards"></div>
+  </article>
+</section>
+
+<section id="metas" class="tab">
+  <div class="kpi-grid" id="metaCards"></div>
+  <div class="grid two">
+    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Clientes</span><h3>Meta 16/40</h3></div></div><canvas id="clientesMetaChart" height="280"></canvas></article>
+    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Recebimento</span><h3>Meta semanal e mensal</h3></div></div><canvas id="recebimentoChart" height="280"></canvas></article>
+  </div>
+</section>
+
+<section id="comissao" class="tab">
+  <div class="kpi-grid" id="comissaoKpis"></div>
+  <div class="grid two">
+    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Regra</span><h3>15% + R$ 375 ajuda custo</h3></div></div><canvas id="comissaoChart" height="320"></canvas></article>
+    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Salário</span><h3>Progresso meta R$ 4.500</h3></div></div><canvas id="salarioChart" height="320"></canvas></article>
+  </div>
+</section>
+
+<section id="performance" class="tab">
+  <div class="kpi-grid" id="performanceKpis"></div>
+  <div class="grid two">
+    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Evolução semanal</span><h3>Comissão por semana</h3></div></div><canvas id="performanceWeeklyChart" height="330"></canvas></article>
+    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Projeção final do mês</span><h3>Projeção baseada na média semanal</h3></div></div><canvas id="projectionChart" height="330"></canvas></article>
+  </div>
+</section>
+
+<section id="relatorio" class="tab">
+  <article class="panel">
+    <div class="panel-head"><div><span class="eyebrow">Relatório</span><h3>Resumo semanal para WhatsApp/reunião</h3></div><button class="btn" onclick="copyReport()">Copiar relatório</button></div>
+    <pre id="reportText"></pre>
+    <a id="reportWhats" class="btn whatsapp" target="_blank">Abrir WhatsApp</a>
+  </article>
+</section>
+
+<footer><span>Collin Professional Dashboard 5.2</span><span id="footerUpdate"></span></footer>
+</main>
 </div>
-<div class="modal-backdrop" id="modalBackdrop"><div class="modal"><button class="modal-close" onclick="closeModal()">×</button><div id="modalContent"></div></div></div>
-<div class="toast" id="toast">Copiado</div>
+
+<div id="toast" class="toast">Copiado</div>
 <script src="app.js"></script>
 </body>
 </html>

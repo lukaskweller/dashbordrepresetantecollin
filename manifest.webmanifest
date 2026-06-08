@@ -1,11 +1,10 @@
 {
-  "name": "Collin Professional Dashboard 5.0",
-  "short_name": "Collin 5.0",
+  "name": "Collin Professional Dashboard 5.2",
+  "short_name": "Collin 5.2",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#faf7f6",
   "theme_color": "#C89080",
-  "description": "Dashboard executivo Collin Professional 5.0",
   "icons": [
     {
       "src": "assets/icon.svg",

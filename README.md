@@ -1,4 +1,4 @@
-# Collin Professional Dashboard 4.1 Manus Plus
+# Collin Professional Dashboard 4.0 Plus
 
 Versão profissional para GitHub Pages com:
 - 8 abas funcionais
@@ -32,13 +32,3 @@ Versão profissional para GitHub Pages com:
 ## Observação sobre WhatsApp
 A planilha atual não possui telefone. O botão WhatsApp abre a mensagem pronta para você escolher o contato manualmente.
 Quando adicionar uma coluna Telefone, o dashboard pode ser ajustado para abrir direto na cliente.
-
-
-## Novidades da versão 4.1 Manus Plus
-- Aba Configurações adicionada
-- Metas ajustáveis direto no dashboard
-- Percentual de comissão configurável
-- Paleta Collin personalizável
-- Intervalo de sincronização configurável
-- Mantém GitHub Pages estático
-- Mantém PWA/offline/localStorage

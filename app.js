@@ -1,88 +1,7 @@
 const BRL = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
 const INT = new Intl.NumberFormat('pt-BR');
 const $ = id => document.getElementById(id);
-let DATA, page=1, perPage=16, currentPriority='todos'; 
-
-const DEFAULT_CONFIG={
- metas:{faturamentoSemanal:2000,faturamentoMensal:20000,clientesAtivos:40,recebimentoTotal:20000,comissaoPercentual:10},
- tema:{corPrimaria:'#C89080',corSecundaria:'#999999',corSucesso:'#10B981',corAviso:'#F59E0B',corErro:'#EF4444',corInfo:'#2563EB'},
- sincronizacao:{intervaloMinutos:5,autoSincronizar:true}
-};
-let CONFIG=loadConfig();
-function loadConfig(){
- try{return deepMerge(DEFAULT_CONFIG,JSON.parse(localStorage.getItem('collinConfig41')||'{}'))}catch(e){return DEFAULT_CONFIG}
-}
-function deepMerge(base, extra){
- const out={...base};
- for(const k in extra||{}){out[k]=typeof extra[k]==='object'&&!Array.isArray(extra[k])?deepMerge(base[k]||{},extra[k]):extra[k]}
- return out;
-}
-function applyConfig(){
- document.documentElement.style.setProperty('--collin',CONFIG.tema.corPrimaria);
- document.documentElement.style.setProperty('--secondary',CONFIG.tema.corSecundaria);
- document.documentElement.style.setProperty('--green',CONFIG.tema.corSucesso);
- document.documentElement.style.setProperty('--yellow',CONFIG.tema.corAviso);
- document.documentElement.style.setProperty('--red',CONFIG.tema.corErro);
- document.documentElement.style.setProperty('--blue',CONFIG.tema.corInfo);
- if(DATA){
-  DATA.goals.clientesMeta=Number(CONFIG.metas.clientesAtivos||40);
-  DATA.goals.faturamentoMetaMensal=Number(CONFIG.metas.faturamentoMensal||20000);
-  DATA.goals.faturamentoMetaSemanal=Number(CONFIG.metas.faturamentoSemanal||2000);
-  DATA.goals.clientesProgresso=Number(((DATA.goals.clientesAbertos/DATA.goals.clientesMeta)*100).toFixed(1));
-  DATA.goals.recebimentoProgresso=Number(((DATA.kpis.recebido/Number(CONFIG.metas.recebimentoTotal||20000))*100).toFixed(1));
-  DATA.kpis.comissaoEstimada=Number((DATA.kpis.recebido*(Number(CONFIG.metas.comissaoPercentual||10)/100)).toFixed(2));
- }
-}
-function fillConfigInputs(){
- if(!document.getElementById('cfgWeeklyRevenue'))return;
- $('cfgWeeklyRevenue').value=CONFIG.metas.faturamentoSemanal;
- $('cfgMonthlyRevenue').value=CONFIG.metas.faturamentoMensal;
- $('cfgClientGoal').value=CONFIG.metas.clientesAtivos;
- $('cfgReceiveGoal').value=CONFIG.metas.recebimentoTotal;
- $('cfgCommission').value=CONFIG.metas.comissaoPercentual;
- $('cfgSync').value=CONFIG.sincronizacao.intervaloMinutos;
- $('cfgPrimary').value=CONFIG.tema.corPrimaria;
- $('cfgSuccess').value=CONFIG.tema.corSucesso;
- $('cfgWarning').value=CONFIG.tema.corAviso;
- $('cfgError').value=CONFIG.tema.corErro;
- $('cfgInfo').value=CONFIG.tema.corInfo;
- $('cfgSecondary').value=CONFIG.tema.corSecundaria;
-}
-function saveConfig(){
- CONFIG={
-  metas:{
-   faturamentoSemanal:Number($('cfgWeeklyRevenue').value||2000),
-   faturamentoMensal:Number($('cfgMonthlyRevenue').value||20000),
-   clientesAtivos:Number($('cfgClientGoal').value||40),
-   recebimentoTotal:Number($('cfgReceiveGoal').value||20000),
-   comissaoPercentual:Number($('cfgCommission').value||10)
-  },
-  tema:{
-   corPrimaria:$('cfgPrimary').value,
-   corSecundaria:$('cfgSecondary').value,
-   corSucesso:$('cfgSuccess').value,
-   corAviso:$('cfgWarning').value,
-   corErro:$('cfgError').value,
-   corInfo:$('cfgInfo').value
-  },
-  sincronizacao:{intervaloMinutos:Number($('cfgSync').value||5),autoSincronizar:true}
- };
- localStorage.setItem('collinConfig41',JSON.stringify(CONFIG));
- applyConfig();
- renderKPIs();renderGoals();renderCommission();buildReports();drawAll();
- showToast('Configurações salvas');
-}
-function resetConfig(){
- localStorage.removeItem('collinConfig41');
- CONFIG=deepMerge(DEFAULT_CONFIG,{});
- fillConfigInputs();applyConfig();renderKPIs();renderGoals();renderCommission();buildReports();drawAll();
- showToast('Padrões restaurados');
-}
-function setupAutoSync(){
- const min=Number(CONFIG.sincronizacao.intervaloMinutos||5);
- setInterval(()=>{ if(navigator.onLine) location.reload(); }, min*60*1000);
-}
-
+let DATA, page=1, perPage=16, currentPriority='todos';
 
 function money(v){return BRL.format(Number(v||0))}
 function statusClass(s){s=(s||'').toLowerCase(); if(s.includes('quit'))return'quitado'; if(s.includes('não')||s.includes('nao'))return'nao'; if(s.includes('cobrar'))return'cobrar'; if(s.includes('pago'))return'pago'; return'acomp'}
@@ -98,7 +17,7 @@ function message(c,t='cobranca'){
 }
 async function loadData(){const cache=localStorage.getItem('collinDash4'); try{const r=await fetch('data/clientes.json?ts='+Date.now()); const j=await r.json(); localStorage.setItem('collinDash4',JSON.stringify(j)); return j}catch(e){if(cache)return JSON.parse(cache); throw e}}
 function updateNet(){const online=navigator.onLine; $('netDot').className=online?'online':'offline'; $('netText').textContent=online?'Online':'Offline'; $('syncText').textContent=online?'Dados sincronizados/cache local':'Usando dados salvos no aparelho'}
-function setTab(tab){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));$(tab).classList.add('active');document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));$('pageTitle').textContent={alertas:'Alertas Executivos',bairros:'Análise por Bairros',clientes:'CRM de Clientes',visitas:'Visitas e Revisitas',cobranca:'Cobrança Inteligente',metas:'Metas Comerciais',relatorio:'Relatório Semanal',comissao:'Comissão',configuracoes:'Configurações'}[tab]||'Dashboard'; setTimeout(drawAll,50)}
+function setTab(tab){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));$(tab).classList.add('active');document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));$('pageTitle').textContent={alertas:'Alertas Executivos',bairros:'Análise por Bairros',clientes:'CRM de Clientes',visitas:'Visitas e Revisitas',cobranca:'Cobrança Inteligente',metas:'Metas Comerciais',relatorio:'Relatório Semanal',comissao:'Comissão'}[tab]||'Dashboard'; setTimeout(drawAll,50)}
 function renderKPIs(){
  const k=DATA.kpis,g=DATA.goals; const arr=[
  ['Clientes',k.clientes,'Base atual'],['Ativos',k.ativos,'Carteira ativa'],['Vendas',money(k.vendas),'Volume vendido'],['Devedor',money(k.devedor),'Saldo em aberto'],
@@ -157,20 +76,5 @@ function round(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,
 function setup(){
  document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>setTab(b.dataset.tab)); $('syncBtn').onclick=()=>location.reload(); $('clientSearch').oninput=()=>{page=1;renderClients()}; $('statusFilter').onchange=()=>{page=1;renderClients()}; $('prevPage').onclick=()=>{page=Math.max(1,page-1);renderClients()}; $('nextPage').onclick=()=>{page++;renderClients()}; document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');currentPriority=c.dataset.priority;renderCharge()}); $('modalBackdrop').onclick=e=>{if(e.target.id==='modalBackdrop')closeModal()}
 }
-async function init(){DATA=await loadData(); applyConfig(); updateNet(); renderKPIs(); renderSmart(); renderLate(); renderBairros(); DATA.statusCounts&&Object.keys(DATA.statusCounts).forEach(s=>$('statusFilter').insertAdjacentHTML('beforeend',`<option value="${s}">${s}</option>`)); renderClients(); renderVisits(); renderCharge(); renderGoals(); buildReports(); renderCommission(); setup(); fillConfigInputs(); setupAutoSync(); drawAll(); $('footerUpdate').textContent='Atualizado em '+new Date(DATA.updatedAt).toLocaleString('pt-BR')}
+async function init(){DATA=await loadData(); updateNet(); renderKPIs(); renderSmart(); renderLate(); renderBairros(); DATA.statusCounts&&Object.keys(DATA.statusCounts).forEach(s=>$('statusFilter').insertAdjacentHTML('beforeend',`<option value="${s}">${s}</option>`)); renderClients(); renderVisits(); renderCharge(); renderGoals(); buildReports(); renderCommission(); setup(); drawAll(); $('footerUpdate').textContent='Atualizado em '+new Date(DATA.updatedAt).toLocaleString('pt-BR')}
 window.addEventListener('online',updateNet);window.addEventListener('offline',updateNet);window.addEventListener('resize',()=>setTimeout(drawAll,100)); if('serviceWorker'in navigator) navigator.serviceWorker.register('service-worker.js'); init();
-Atualize meu projeto para que o app.js leia os dados diretamente da planilha publicada do Google Sheets, usando este link:
-
-https://docs.google.com/spreadsheets/d/e/2PACX-1vTDBHyfM0CoQuXfeiktYsO6omSL0055fqNxto_207DQb285VgL6eS90hpem9ftmMdt7BYFt7iqGrORL/pub?output=csv
-
-Remova a dependência principal do arquivo estático data/clientes.json como fonte única.
-
-O dashboard deve:
-- Buscar os dados da planilha publicada em CSV sempre que abrir.
-- Atualizar automaticamente a cada 5 minutos.
-- Manter cache local no localStorage para funcionar offline.
-- Se a leitura da planilha falhar, usar data/clientes.json como fallback.
-- Recalcular KPIs, metas, status, bairros, clientes, cobrança, visitas, comissão e relatórios com base nos dados atualizados.
-- Manter o PWA/offline funcionando.
-- Atualizar o texto "Última sincronização".
-- Não alterar o layout visual atual.

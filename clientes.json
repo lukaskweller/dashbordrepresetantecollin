@@ -1,15 +1,21 @@
 {
-  "version": "4.3.1 Safe AutoSync",
-  "updatedAt": "2026-06-08T16:20:39",
+  "version": "4.3 Correções Metas AutoSync",
+  "updatedAt": "2026-06-08T15:49:01",
   "source": "Cobrança Collin ATT 2026(1).xlsx",
   "goals": {
     "clientesMeta": 40,
     "clientesAbertos": 16,
     "clientesSemana": 6,
-    "clientesProgresso": 40,
+    "clientesProgresso": 40.0,
     "recebimentoMetaSemanal": 6000,
     "recebimentoMetaMensal": 20000,
+    "recebimentoAtualSemana": 3775.2,
+    "recebimentoProgressoSemanal": 62.9,
     "salarioMetaMensal": 4500,
+    "salarioAtual4Semanas": 4384,
+    "salarioAtualComSemana5": 4761.52,
+    "salarioProgresso4Semanas": 97.4,
+    "salarioProgressoComSemana5": 105.8,
     "comissaoPercentual": 10
   },
   "kpis": {
@@ -94,6 +100,24 @@
       "clientes": 12,
       "vendas": 5159.3,
       "devedor": 4629.6,
+      "maiorCliente": {
+        "id": 11,
+        "cliente": "BRUNA BELLA CHICK - BARRA",
+        "nome": "BRUNA BELLA CHICK",
+        "bairro": "Barra Aririú",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 1679.0,
+        "saldoDevedor": 1679.0,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Não pago",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 429.94
     },
     {
@@ -101,6 +125,24 @@
       "clientes": 14,
       "vendas": 4516.2,
       "devedor": 3749.2,
+      "maiorCliente": {
+        "id": 15,
+        "cliente": "CAROLINA ATELIE - FORQUILINHAS",
+        "nome": "CAROLINA ATELIE",
+        "bairro": "Forquilinhas",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 1067.8,
+        "saldoDevedor": 867.8,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 200.0,
+        "parcelasPagas": 1.0,
+        "status": "Pago",
+        "observacoes": "✅ OK",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 322.59
     },
     {
@@ -108,6 +150,24 @@
       "clientes": 6,
       "vendas": 3301.0,
       "devedor": 3151.1,
+      "maiorCliente": {
+        "id": 54,
+        "cliente": "LBLOND - PONTE IMARUIM",
+        "nome": "LBLOND",
+        "bairro": "Ponte Imaruim",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 1556.9,
+        "saldoDevedor": 1556.9,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Não pago",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 550.17
     },
     {
@@ -115,6 +175,24 @@
       "clientes": 5,
       "vendas": 2636.1,
       "devedor": 2156.1,
+      "maiorCliente": {
+        "id": 29,
+        "cliente": "ERLEIA - BELA VISTA",
+        "nome": "ERLEIA",
+        "bairro": "Bela Vista",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 988.5,
+        "saldoDevedor": 988.5,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Não pago",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 527.22
     },
     {
@@ -122,6 +200,24 @@
       "clientes": 6,
       "vendas": 1533.2,
       "devedor": 1277.2,
+      "maiorCliente": {
+        "id": 74,
+        "cliente": "MIRIAN OLIVEIRA - CAMINHO NOVO",
+        "nome": "MIRIAN OLIVEIRA",
+        "bairro": "Caminho Novo",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 848.8,
+        "saldoDevedor": 742.8,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 106.0,
+        "parcelasPagas": 1.0,
+        "status": "Pago",
+        "observacoes": "✅ OK",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 255.53
     },
     {
@@ -129,6 +225,24 @@
       "clientes": 1,
       "vendas": 1228.78,
       "devedor": 1098.78,
+      "maiorCliente": {
+        "id": 24,
+        "cliente": "DIANE HAIR -  RIO DO SUL",
+        "nome": "DIANE HAIR",
+        "bairro": "Rio Do Sul",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 1228.78,
+        "saldoDevedor": 1098.78,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 130.0,
+        "parcelasPagas": 1.0,
+        "status": "Pago",
+        "observacoes": "✅ OK",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 1228.78
     },
     {
@@ -136,6 +250,24 @@
       "clientes": 7,
       "vendas": 1186.7,
       "devedor": 898.2,
+      "maiorCliente": {
+        "id": 40,
+        "cliente": "JAKI - RIO GRANDE",
+        "nome": "JAKI",
+        "bairro": "Rio Grande",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 598.7,
+        "saldoDevedor": 498.7,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 100.0,
+        "parcelasPagas": 1.0,
+        "status": "Pago",
+        "observacoes": "✅ OK",
+        "telefone": "",
+        "prioridade": "Média"
+      },
       "ticketMedio": 169.53
     },
     {
@@ -143,6 +275,24 @@
       "clientes": 1,
       "vendas": 938.7,
       "devedor": 858.7,
+      "maiorCliente": {
+        "id": 78,
+        "cliente": "STUDIO ROSE - SERTAO IMARUIM",
+        "nome": "STUDIO ROSE",
+        "bairro": "Sertao Imaruim",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 938.7,
+        "saldoDevedor": 858.7,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 80.0,
+        "parcelasPagas": 1.0,
+        "status": "Pago",
+        "observacoes": "✅ OK",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 938.7
     },
     {
@@ -150,6 +300,24 @@
       "clientes": 1,
       "vendas": 928.5,
       "devedor": 928.5,
+      "maiorCliente": {
+        "id": 92,
+        "cliente": "CLEO CANTINHO DA BELEZA - MADRID",
+        "nome": "CLEO CANTINHO DA BELEZA",
+        "bairro": "Madrid",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 928.5,
+        "saldoDevedor": 928.5,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Não pago",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 928.5
     },
     {
@@ -157,6 +325,24 @@
       "clientes": 3,
       "vendas": 899.11,
       "devedor": 899.11,
+      "maiorCliente": {
+        "id": 86,
+        "cliente": "SUSSANA CARLA - JARDIN ELDORADO",
+        "nome": "SUSSANA CARLA",
+        "bairro": "Jardin Eldorado",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 899.11,
+        "saldoDevedor": 899.11,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Não pago",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 299.7
     },
     {
@@ -164,6 +350,24 @@
       "clientes": 2,
       "vendas": 866.1,
       "devedor": 866.1,
+      "maiorCliente": {
+        "id": 63,
+        "cliente": "PAULA - FAZENDA DO MAX",
+        "nome": "PAULA",
+        "bairro": "Fazenda Do Max",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 667.1,
+        "saldoDevedor": 667.1,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Não pago",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 433.05
     },
     {
@@ -171,6 +375,24 @@
       "clientes": 1,
       "vendas": 828.7,
       "devedor": 828.7,
+      "maiorCliente": {
+        "id": 102,
+        "cliente": "GEOVANA LENCINA",
+        "nome": "GEOVANA LENCINA",
+        "bairro": "Não Informado",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 828.7,
+        "saldoDevedor": 828.7,
+        "dataInicio": "2026-06-12T00:00:00",
+        "vencimento": "2026-06-15T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Cobrar próxima semana",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 828.7
     },
     {
@@ -178,6 +400,24 @@
       "clientes": 1,
       "vendas": 787.8,
       "devedor": 787.8,
+      "maiorCliente": {
+        "id": 58,
+        "cliente": "NINA HORST - CAMPINAS",
+        "nome": "NINA HORST",
+        "bairro": "Campinas",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 787.8,
+        "saldoDevedor": 787.8,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Não pago",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 787.8
     },
     {
@@ -185,6 +425,24 @@
       "clientes": 2,
       "vendas": 699.5,
       "devedor": 699.5,
+      "maiorCliente": {
+        "id": 88,
+        "cliente": "JUICY - SAO SEBASTIAO",
+        "nome": "JUICY",
+        "bairro": "Sao Sebastiao",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 699.5,
+        "saldoDevedor": 699.5,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Não pago",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 349.75
     },
     {
@@ -192,6 +450,24 @@
       "clientes": 4,
       "vendas": 677.8,
       "devedor": 677.8,
+      "maiorCliente": {
+        "id": 18,
+        "cliente": "CS ESTUDIO DA CRIS - PASSA VINTE",
+        "nome": "CS ESTUDIO DA CRIS",
+        "bairro": "Passa Vinte",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 399.0,
+        "saldoDevedor": 399.0,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Cobrar próxima semana",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Média"
+      },
       "ticketMedio": 169.45
     },
     {
@@ -199,6 +475,24 @@
       "clientes": 1,
       "vendas": 657.5,
       "devedor": 507.5,
+      "maiorCliente": {
+        "id": 79,
+        "cliente": "TAINARA APARECIDA - MACIAMBU",
+        "nome": "TAINARA APARECIDA",
+        "bairro": "Maciambu",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 657.5,
+        "saldoDevedor": 507.5,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 150.0,
+        "parcelasPagas": 1.0,
+        "status": "Pago",
+        "observacoes": "✅ OK",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 657.5
     },
     {
@@ -206,6 +500,24 @@
       "clientes": 4,
       "vendas": 584.4,
       "devedor": 200.0,
+      "maiorCliente": {
+        "id": 96,
+        "cliente": "CELI HAIR - ARIRIU",
+        "nome": "CELI HAIR",
+        "bairro": "Aririu",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 584.4,
+        "saldoDevedor": 200.0,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 384.4,
+        "parcelasPagas": 1.0,
+        "status": "Pago",
+        "observacoes": "✅ OK",
+        "telefone": "",
+        "prioridade": "Média"
+      },
       "ticketMedio": 146.1
     },
     {
@@ -213,6 +525,24 @@
       "clientes": 4,
       "vendas": 558.81,
       "devedor": 558.81,
+      "maiorCliente": {
+        "id": 12,
+        "cliente": "CACAU CAB - CENTRO PALHOÇA",
+        "nome": "CACAU CAB",
+        "bairro": "Centro Palhoça",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 558.81,
+        "saldoDevedor": 558.81,
+        "dataInicio": "2026-06-12T00:00:00",
+        "vencimento": "2026-06-15T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Cobrar próxima semana",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 139.7
     },
     {
@@ -220,6 +550,24 @@
       "clientes": 1,
       "vendas": 549.0,
       "devedor": 549.0,
+      "maiorCliente": {
+        "id": 56,
+        "cliente": "MARIANY NASCIMENTO - BERREIROS",
+        "nome": "MARIANY NASCIMENTO",
+        "bairro": "Berreiros",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 549.0,
+        "saldoDevedor": 549.0,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Não pago",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 549.0
     },
     {
@@ -227,6 +575,24 @@
       "clientes": 3,
       "vendas": 508.9,
       "devedor": 408.9,
+      "maiorCliente": {
+        "id": 25,
+        "cliente": "DIRCEU - KOBRASOL",
+        "nome": "DIRCEU",
+        "bairro": "Kobrasol",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 348.9,
+        "saldoDevedor": 248.9,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 100.0,
+        "parcelasPagas": 1.0,
+        "status": "Pago",
+        "observacoes": "✅ OK",
+        "telefone": "",
+        "prioridade": "Média"
+      },
       "ticketMedio": 169.63
     },
     {
@@ -234,6 +600,24 @@
       "clientes": 1,
       "vendas": 498.9,
       "devedor": 498.9,
+      "maiorCliente": {
+        "id": 91,
+        "cliente": "MICHELE ROSA - POTECAS",
+        "nome": "MICHELE ROSA",
+        "bairro": "Potecas",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 498.9,
+        "saldoDevedor": 498.9,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Não pago",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Alta"
+      },
       "ticketMedio": 498.9
     },
     {
@@ -241,6 +625,24 @@
       "clientes": 1,
       "vendas": 435.4,
       "devedor": 285.4,
+      "maiorCliente": {
+        "id": 57,
+        "cliente": "MARIAS BRUNA - PRAIA DO PAPAGAIO",
+        "nome": "MARIAS BRUNA",
+        "bairro": "Praia Do Papagaio",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 435.4,
+        "saldoDevedor": 285.4,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 150.0,
+        "parcelasPagas": 1.0,
+        "status": "Pago",
+        "observacoes": "✅ OK",
+        "telefone": "",
+        "prioridade": "Média"
+      },
       "ticketMedio": 435.4
     },
     {
@@ -248,6 +650,24 @@
       "clientes": 2,
       "vendas": 399.9,
       "devedor": 399.9,
+      "maiorCliente": {
+        "id": 99,
+        "cliente": "FRANCINE SOUZA  - SUL DO RIO",
+        "nome": "FRANCINE SOUZA",
+        "bairro": "Sul Do Rio",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 399.9,
+        "saldoDevedor": 399.9,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 1.0,
+        "status": "Pago",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Média"
+      },
       "ticketMedio": 199.95
     },
     {
@@ -255,6 +675,24 @@
       "clientes": 1,
       "vendas": 329.5,
       "devedor": 229.5,
+      "maiorCliente": {
+        "id": 61,
+        "cliente": "ONDA LINDA - PRAIA SONHO",
+        "nome": "ONDA LINDA",
+        "bairro": "Praia Sonho",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 329.5,
+        "saldoDevedor": 229.5,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 100.0,
+        "parcelasPagas": 1.0,
+        "status": "Pago",
+        "observacoes": "✅ OK",
+        "telefone": "",
+        "prioridade": "Média"
+      },
       "ticketMedio": 329.5
     },
     {
@@ -262,6 +700,24 @@
       "clientes": 2,
       "vendas": 319.7,
       "devedor": 259.7,
+      "maiorCliente": {
+        "id": 100,
+        "cliente": "JOSELANE NASCIMENTO - CENTRO PH",
+        "nome": "JOSELANE NASCIMENTO",
+        "bairro": "Centro Ph",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 179.8,
+        "saldoDevedor": 119.8,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 60.0,
+        "parcelasPagas": 1.0,
+        "status": "Pago",
+        "observacoes": "✅ OK",
+        "telefone": "",
+        "prioridade": "Baixa"
+      },
       "ticketMedio": 159.85
     },
     {
@@ -269,6 +725,24 @@
       "clientes": 2,
       "vendas": 199.8,
       "devedor": 0.0,
+      "maiorCliente": {
+        "id": 10,
+        "cliente": "CATIA - PONTE IMARUIN",
+        "nome": "CATIA",
+        "bairro": "Ponte Imaruin",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 199.8,
+        "saldoDevedor": 0.0,
+        "dataInicio": "2025-05-26T00:00:00",
+        "vencimento": "2025-06-02T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Quitado",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Baixa"
+      },
       "ticketMedio": 99.9
     },
     {
@@ -276,6 +750,24 @@
       "clientes": 1,
       "vendas": 84.8,
       "devedor": 0.0,
+      "maiorCliente": {
+        "id": 94,
+        "cliente": "SALAO BRILHO UNICO ANDREIA - JARDIN",
+        "nome": "SALAO BRILHO UNICO ANDREIA",
+        "bairro": "Jardin",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 84.8,
+        "saldoDevedor": 0.0,
+        "dataInicio": "2025-05-26T00:00:00",
+        "vencimento": "2025-06-02T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Quitado",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Baixa"
+      },
       "ticketMedio": 84.8
     },
     {
@@ -283,6 +775,24 @@
       "clientes": 1,
       "vendas": 0.0,
       "devedor": 0.0,
+      "maiorCliente": {
+        "id": 1,
+        "cliente": "ALAIR MERLIM - ALTO ARIRIU",
+        "nome": "ALAIR MERLIM",
+        "bairro": "Alto Aririu",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 0.0,
+        "saldoDevedor": 0.0,
+        "dataInicio": "",
+        "vencimento": "",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Quitado",
+        "observacoes": "",
+        "telefone": "",
+        "prioridade": "Baixa"
+      },
       "ticketMedio": 0.0
     },
     {
@@ -290,6 +800,24 @@
       "clientes": 1,
       "vendas": 0.0,
       "devedor": 0.0,
+      "maiorCliente": {
+        "id": 6,
+        "cliente": "ANA LAURA - PRAIA DE FORA",
+        "nome": "ANA LAURA",
+        "bairro": "Praia De Fora",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 0.0,
+        "saldoDevedor": 0.0,
+        "dataInicio": "",
+        "vencimento": "",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Quitado",
+        "observacoes": "",
+        "telefone": "",
+        "prioridade": "Baixa"
+      },
       "ticketMedio": 0.0
     },
     {
@@ -297,6 +825,24 @@
       "clientes": 2,
       "vendas": 0.0,
       "devedor": 0.0,
+      "maiorCliente": {
+        "id": 7,
+        "cliente": "ANDREIA - FLOR DE NAPOLIS",
+        "nome": "ANDREIA",
+        "bairro": "Flor De Napolis",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 0.0,
+        "saldoDevedor": 0.0,
+        "dataInicio": "",
+        "vencimento": "",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Quitado",
+        "observacoes": "",
+        "telefone": "",
+        "prioridade": "Baixa"
+      },
       "ticketMedio": 0.0
     },
     {
@@ -304,6 +850,24 @@
       "clientes": 2,
       "vendas": 0.0,
       "devedor": 0.0,
+      "maiorCliente": {
+        "id": 8,
+        "cliente": "ANGELICA - PAGANI",
+        "nome": "ANGELICA",
+        "bairro": "Pagani",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 0.0,
+        "saldoDevedor": 0.0,
+        "dataInicio": "",
+        "vencimento": "",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Quitado",
+        "observacoes": "",
+        "telefone": "",
+        "prioridade": "Baixa"
+      },
       "ticketMedio": 0.0
     },
     {
@@ -311,6 +875,24 @@
       "clientes": 2,
       "vendas": 0.0,
       "devedor": 0.0,
+      "maiorCliente": {
+        "id": 17,
+        "cliente": "EDUARDA - SANTO AMARO",
+        "nome": "EDUARDA",
+        "bairro": "Santo Amaro",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 0.0,
+        "saldoDevedor": 0.0,
+        "dataInicio": "",
+        "vencimento": "",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Quitado",
+        "observacoes": "",
+        "telefone": "",
+        "prioridade": "Baixa"
+      },
       "ticketMedio": 0.0
     },
     {
@@ -318,6 +900,24 @@
       "clientes": 1,
       "vendas": 0.0,
       "devedor": 0.0,
+      "maiorCliente": {
+        "id": 28,
+        "cliente": "JAQUELINE - JARDIM ELDORADO",
+        "nome": "JAQUELINE",
+        "bairro": "Jardim Eldorado",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 0.0,
+        "saldoDevedor": 0.0,
+        "dataInicio": "",
+        "vencimento": "",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Quitado",
+        "observacoes": "",
+        "telefone": "",
+        "prioridade": "Baixa"
+      },
       "ticketMedio": 0.0
     },
     {
@@ -325,6 +925,24 @@
       "clientes": 1,
       "vendas": 0.0,
       "devedor": 0.0,
+      "maiorCliente": {
+        "id": 31,
+        "cliente": "JUCELIA - GUARDA CUBATAO",
+        "nome": "JUCELIA",
+        "bairro": "Guarda Cubatao",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 0.0,
+        "saldoDevedor": 0.0,
+        "dataInicio": "",
+        "vencimento": "",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Quitado",
+        "observacoes": "",
+        "telefone": "",
+        "prioridade": "Baixa"
+      },
       "ticketMedio": 0.0
     },
     {
@@ -332,6 +950,24 @@
       "clientes": 1,
       "vendas": 0.0,
       "devedor": 0.0,
+      "maiorCliente": {
+        "id": 38,
+        "cliente": "MARIA - PRAIA COMPRIDA",
+        "nome": "MARIA",
+        "bairro": "Praia Comprida",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 0.0,
+        "saldoDevedor": 0.0,
+        "dataInicio": "",
+        "vencimento": "",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Quitado",
+        "observacoes": "",
+        "telefone": "",
+        "prioridade": "Baixa"
+      },
       "ticketMedio": 0.0
     },
     {
@@ -339,6 +975,24 @@
       "clientes": 2,
       "vendas": 0.0,
       "devedor": 0.0,
+      "maiorCliente": {
+        "id": 66,
+        "cliente": "JOYCE LIMA - PACHECO",
+        "nome": "JOYCE LIMA",
+        "bairro": "Pacheco",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 0.0,
+        "saldoDevedor": 0.0,
+        "dataInicio": "",
+        "vencimento": "",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Quitado",
+        "observacoes": "",
+        "telefone": "",
+        "prioridade": "Baixa"
+      },
       "ticketMedio": 0.0
     },
     {
@@ -346,6 +1000,24 @@
       "clientes": 1,
       "vendas": 0.0,
       "devedor": 0.0,
+      "maiorCliente": {
+        "id": 68,
+        "cliente": "SALAO DA LEIA - CENTRO SAO JOSE",
+        "nome": "SALAO DA LEIA",
+        "bairro": "Centro Sao Jose",
+        "vendedor": "Lucas Mateus",
+        "saldoCarteira": 0.0,
+        "saldoDevedor": 0.0,
+        "dataInicio": "2026-06-06T00:00:00",
+        "vencimento": "2026-06-08T00:00:00",
+        "parcelas": "",
+        "valorParcela": 0.0,
+        "parcelasPagas": 0.0,
+        "status": "Quitado",
+        "observacoes": "⚠️ VERIFICAR PIX",
+        "telefone": "",
+        "prioridade": "Baixa"
+      },
       "ticketMedio": 0.0
     }
   ],

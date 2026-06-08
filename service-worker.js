@@ -1,4 +1,4 @@
-const CACHE='collin-dashboard-5-2-v1';
+const CACHE='collin-dashboard-5-3-premium-v1';
 const ASSETS=['./','./index.html','./styles.css','./app.js','./manifest.webmanifest','./data/clientes.json','./assets/icon.svg'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)));self.skipWaiting()});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.map(k=>k!==CACHE?caches.delete(k):null))));self.clients.claim()});

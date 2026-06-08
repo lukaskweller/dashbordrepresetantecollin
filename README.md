@@ -1,9 +1,19 @@
-# Collin Professional Dashboard 5.2
+# Collin Professional Dashboard 5.4 Executive Stable
 
-Atualizações:
-- Comissão = 15% do valor das parcelas pagas + R$ 375 ajuda de custo.
-- Bairros consolidados em ordem decrescente por carteira/vendas.
-- Cobrança destaca clientes que não pagaram na semana por prioridade.
-- Visitas destaca clientes com menos de R$150 em carteira.
-- Aba Performance com Evolução semanal e Projeção final do mês.
-- Base atualizada pela planilha enviada.
+Versão gerada do zero para corrigir erro de abertura no GitHub Pages.
+
+Arquivos para subir na raiz do repositório:
+- index.html
+- styles.css
+- app.js
+- data/clientes.json
+- assets/icon.svg
+
+Importante:
+- Esta versão NÃO usa Chart.js externo.
+- Esta versão NÃO registra service-worker, evitando cache quebrado.
+- Abre com data/clientes.json local e tenta AutoSync com Google Sheets em segundo plano.
+- Se o Google Sheets falhar, o dashboard continua funcionando.
+
+Depois de subir, abra:
+https://lukaskweller.github.io/dashbordrepresetantecollin/?v=54

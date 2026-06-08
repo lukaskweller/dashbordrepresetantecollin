@@ -1,11 +1,11 @@
 {
-  "name": "Collin Professional Dashboard 4.3.1",
-  "short_name": "Collin 4.3.1",
+  "name": "Collin Professional Dashboard 4.3.2",
+  "short_name": "Collin 4.3.2",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#faf7f6",
   "theme_color": "#C89080",
-  "description": "Dashboard executivo Collin Professional versão segura.",
+  "description": "Dashboard executivo Collin Professional limpo.",
   "icons": [
     {
       "src": "assets/icon.svg",

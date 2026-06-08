@@ -3,20 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Collin Professional Dashboard 5.2</title>
+<title>Collin Professional Dashboard 5.3</title>
 <meta name="theme-color" content="#C89080">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div class="app">
 <aside class="sidebar">
   <div class="brand">
     <div class="brand-mark">CP</div>
-    <div><strong>Collin Professional</strong><span>Executive 5.2</span></div>
+    <div><strong>Collin Professional</strong><span>Executive Premium 5.3</span></div>
   </div>
   <nav id="nav">
-    <button data-tab="home" class="active">🏠 Home</button>
+    <button data-tab="home" class="active">🏠 Visão Geral</button>
     <button data-tab="clientes">👥 Clientes</button>
     <button data-tab="bairros">🗺️ Bairros</button>
     <button data-tab="cobranca">🚨 Cobrança</button>
@@ -27,98 +28,158 @@
     <button data-tab="relatorio">📋 Relatório</button>
   </nav>
   <div class="sync-card">
-    <span id="netDot"></span>
-    <div><b id="netText">Carregando</b><small id="syncText">Dados locais seguros</small></div>
+    <span></span>
+    <div><b>Base atualizada</b><small id="syncText">Carregando dados...</small></div>
   </div>
 </aside>
 
 <main>
 <header class="topbar">
-  <div><span class="eyebrow">Representante Collin Professional</span><h1 id="pageTitle">Dashboard Executivo</h1></div>
-  <div class="top-actions"><button class="btn secondary" id="syncBtn">Recarregar dados</button><button class="btn" onclick="window.print()">Exportar PDF</button></div>
+  <div>
+    <span class="eyebrow">Representante Collin Professional</span>
+    <h1 id="pageTitle">Visão Geral</h1>
+  </div>
+  <div class="top-actions">
+    <button class="btn secondary" id="reloadBtn">Recarregar</button>
+    <button class="btn" onclick="window.print()">Exportar PDF</button>
+  </div>
 </header>
 
 <section class="hero">
   <div>
-    <span class="hero-pill">Versão 5.2 • Base atualizada • 103 clientes</span>
-    <h2>Gestão completa de carteira, cobrança, visitas, comissão e performance</h2>
-    <p>Comissão atual: 15% sobre parcelas pagas + R$ 375,00 de ajuda de custo.</p>
+    <span class="hero-pill">Premium layout • gráficos interativos • base atualizada</span>
+    <h2>Gestão comercial clara, moderna e pronta para reunião</h2>
+    <p>Layout redesenhado com mais espaço, leitura limpa e indicadores comerciais por prioridade.</p>
   </div>
-  <div class="hero-metric"><small>Meta Clientes</small><strong id="heroGoal">16/40</strong><div class="mini-progress"><span id="heroProgress"></span></div></div>
+  <div class="hero-card">
+    <small>Meta clientes</small>
+    <strong id="heroGoal">16/40</strong>
+    <div class="progress"><span id="heroProgress"></span></div>
+  </div>
 </section>
 
 <section id="home" class="tab active">
   <div class="kpi-grid" id="homeKpis"></div>
   <div class="grid two">
-    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Status</span><h3>Distribuição da carteira</h3></div></div><canvas id="statusChart" height="260"></canvas></article>
-    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Resumo inteligente</span><h3>Indicadores comerciais</h3></div></div><div class="smart-grid" id="smartCards"></div></article>
+    <article class="panel chart-panel">
+      <div class="panel-head"><div><span class="eyebrow">Carteira</span><h3>Status dos clientes</h3></div></div>
+      <canvas id="statusChart"></canvas>
+    </article>
+    <article class="panel chart-panel">
+      <div class="panel-head"><div><span class="eyebrow">Financeiro</span><h3>Carteira x Devedor x Recebido</h3></div></div>
+      <canvas id="financeChart"></canvas>
+    </article>
   </div>
 </section>
 
 <section id="clientes" class="tab">
+  <div class="grid two">
+    <article class="panel chart-panel">
+      <div class="panel-head"><div><span class="eyebrow">Rank</span><h3>Clientes cadastrados por bairro</h3></div></div>
+      <canvas id="rankClientesBairroChart"></canvas>
+    </article>
+    <article class="panel chart-panel">
+      <div class="panel-head"><div><span class="eyebrow">Rank</span><h3>Total de vendas por bairro</h3></div></div>
+      <canvas id="rankVendasBairroChart"></canvas>
+    </article>
+  </div>
   <article class="panel">
-    <div class="panel-head"><div><span class="eyebrow">CRM</span><h3>Clientes cadastrados</h3></div><input id="searchInput" placeholder="Buscar cliente, bairro ou status..."></div>
+    <div class="panel-head">
+      <div><span class="eyebrow">CRM</span><h3>Base de clientes</h3></div>
+      <input id="searchInput" placeholder="Buscar cliente, bairro ou status...">
+    </div>
     <div class="table-wrap"><table><thead><tr><th>Cliente</th><th>Bairro</th><th>Carteira</th><th>Devedor</th><th>Parcela</th><th>Status</th><th>Ações</th></tr></thead><tbody id="clientRows"></tbody></table></div>
   </article>
 </section>
 
 <section id="bairros" class="tab">
   <div class="grid two">
-    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Ordem decrescente</span><h3>Top bairros por carteira</h3></div></div><canvas id="bairroChart" height="360"></canvas></article>
-    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Ranking consolidado</span><h3>Bairros consolidados</h3></div></div><div class="cards-list" id="bairroCards"></div></article>
+    <article class="panel chart-panel">
+      <div class="panel-head"><div><span class="eyebrow">Decrescente</span><h3>Carteira por bairro</h3></div></div>
+      <canvas id="bairroBubbleChart"></canvas>
+    </article>
+    <article class="panel chart-panel">
+      <div class="panel-head"><div><span class="eyebrow">Comparativo</span><h3>Vendas x Devedor</h3></div></div>
+      <canvas id="bairroCompareChart"></canvas>
+    </article>
   </div>
+  <article class="panel">
+    <div class="panel-head"><div><span class="eyebrow">Ranking</span><h3>Bairros consolidados</h3></div></div>
+    <div class="rank-list" id="bairroCards"></div>
+  </article>
 </section>
 
 <section id="cobranca" class="tab">
-  <article class="panel">
-    <div class="panel-head"><div><span class="eyebrow">Prioridade</span><h3>Clientes que não pagaram na semana</h3></div></div>
-    <div class="cards-list" id="cobrancaCards"></div>
-  </article>
+  <div class="section-intro">
+    <span class="eyebrow">Prioridade comercial</span>
+    <h2>Clientes que não pagaram na semana</h2>
+    <p>Ordenado por prioridade: primeiro <b>Não pago</b>, depois <b>Cobrar próxima semana</b>, sempre do maior saldo para o menor.</p>
+  </div>
+  <div class="cards-list" id="cobrancaCards"></div>
 </section>
 
 <section id="visitas" class="tab">
-  <article class="panel">
-    <div class="panel-head"><div><span class="eyebrow">Recompra</span><h3>Clientes com menos de R$ 150 em carteira</h3></div></div>
-    <div class="cards-list" id="visitaCards"></div>
-  </article>
+  <div class="section-intro">
+    <span class="eyebrow">Recompra</span>
+    <h2>Clientes para visitar</h2>
+    <p>Regra aplicada: carteira <b>maior que R$0</b> e <b>menor que R$150</b>. Clientes zerados ficam fora.</p>
+  </div>
+  <div class="cards-list" id="visitaCards"></div>
 </section>
 
 <section id="metas" class="tab">
-  <div class="kpi-grid" id="metaCards"></div>
+  <div class="kpi-grid compact" id="metaCards"></div>
   <div class="grid two">
-    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Clientes</span><h3>Meta 16/40</h3></div></div><canvas id="clientesMetaChart" height="280"></canvas></article>
-    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Recebimento</span><h3>Meta semanal e mensal</h3></div></div><canvas id="recebimentoChart" height="280"></canvas></article>
+    <article class="panel chart-panel large">
+      <div class="panel-head"><div><span class="eyebrow">Interativo</span><h3>Progresso de metas</h3></div></div>
+      <canvas id="metasProgressChart"></canvas>
+    </article>
+    <article class="panel chart-panel large">
+      <div class="panel-head"><div><span class="eyebrow">Interativo</span><h3>Recebimento semanal e mensal</h3></div></div>
+      <canvas id="metasRecebimentoChart"></canvas>
+    </article>
   </div>
 </section>
 
 <section id="comissao" class="tab">
   <div class="kpi-grid" id="comissaoKpis"></div>
   <div class="grid two">
-    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Regra</span><h3>15% + R$ 375 ajuda custo</h3></div></div><canvas id="comissaoChart" height="320"></canvas></article>
-    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Salário</span><h3>Progresso meta R$ 4.500</h3></div></div><canvas id="salarioChart" height="320"></canvas></article>
+    <article class="panel chart-panel">
+      <div class="panel-head"><div><span class="eyebrow">Últimas 4 semanas</span><h3>Salário meta com semana atual</h3></div></div>
+      <canvas id="comissaoLast4Chart"></canvas>
+    </article>
+    <article class="panel chart-panel">
+      <div class="panel-head"><div><span class="eyebrow">Regra</span><h3>15% + R$375 ajuda custo</h3></div></div>
+      <canvas id="comissaoRuleChart"></canvas>
+    </article>
   </div>
 </section>
 
 <section id="performance" class="tab">
   <div class="kpi-grid" id="performanceKpis"></div>
   <div class="grid two">
-    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Evolução semanal</span><h3>Comissão por semana</h3></div></div><canvas id="performanceWeeklyChart" height="330"></canvas></article>
-    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Projeção final do mês</span><h3>Projeção baseada na média semanal</h3></div></div><canvas id="projectionChart" height="330"></canvas></article>
+    <article class="panel chart-panel">
+      <div class="panel-head"><div><span class="eyebrow">Evolução semanal</span><h3>Comissão e tendência</h3></div></div>
+      <canvas id="performanceWeeklyChart"></canvas>
+    </article>
+    <article class="panel chart-panel">
+      <div class="panel-head"><div><span class="eyebrow">Projeção final do mês</span><h3>Atual x projeção x meta</h3></div></div>
+      <canvas id="projectionChart"></canvas>
+    </article>
   </div>
 </section>
 
 <section id="relatorio" class="tab">
   <article class="panel">
-    <div class="panel-head"><div><span class="eyebrow">Relatório</span><h3>Resumo semanal para WhatsApp/reunião</h3></div><button class="btn" onclick="copyReport()">Copiar relatório</button></div>
+    <div class="panel-head"><div><span class="eyebrow">Relatório</span><h3>Resumo semanal</h3></div><button class="btn" onclick="copyReport()">Copiar</button></div>
     <pre id="reportText"></pre>
     <a id="reportWhats" class="btn whatsapp" target="_blank">Abrir WhatsApp</a>
   </article>
 </section>
 
-<footer><span>Collin Professional Dashboard 5.2</span><span id="footerUpdate"></span></footer>
+<footer><span>Collin Professional Dashboard 5.3</span><span id="footerUpdate"></span></footer>
 </main>
 </div>
-
 <div id="toast" class="toast">Copiado</div>
 <script src="app.js"></script>
 </body>

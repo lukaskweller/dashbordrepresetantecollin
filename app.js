@@ -1,7 +1,7 @@
 const BRL = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
 const INT = new Intl.NumberFormat('pt-BR');
 const $ = id => document.getElementById(id);
-let DATA, page=1, perPage=16, currentPriority='todos';
+let DATA, page=1, perPage=16, currentPriority='todos'; 
 
 const DEFAULT_CONFIG={
  metas:{faturamentoSemanal:2000,faturamentoMensal:20000,clientesAtivos:40,recebimentoTotal:20000,comissaoPercentual:10},
@@ -159,3 +159,18 @@ function setup(){
 }
 async function init(){DATA=await loadData(); applyConfig(); updateNet(); renderKPIs(); renderSmart(); renderLate(); renderBairros(); DATA.statusCounts&&Object.keys(DATA.statusCounts).forEach(s=>$('statusFilter').insertAdjacentHTML('beforeend',`<option value="${s}">${s}</option>`)); renderClients(); renderVisits(); renderCharge(); renderGoals(); buildReports(); renderCommission(); setup(); fillConfigInputs(); setupAutoSync(); drawAll(); $('footerUpdate').textContent='Atualizado em '+new Date(DATA.updatedAt).toLocaleString('pt-BR')}
 window.addEventListener('online',updateNet);window.addEventListener('offline',updateNet);window.addEventListener('resize',()=>setTimeout(drawAll,100)); if('serviceWorker'in navigator) navigator.serviceWorker.register('service-worker.js'); init();
+Atualize meu projeto para que o app.js leia os dados diretamente da planilha publicada do Google Sheets, usando este link:
+
+https://docs.google.com/spreadsheets/d/e/2PACX-1vTDBHyfM0CoQuXfeiktYsO6omSL0055fqNxto_207DQb285VgL6eS90hpem9ftmMdt7BYFt7iqGrORL/pub?output=csv
+
+Remova a dependência principal do arquivo estático data/clientes.json como fonte única.
+
+O dashboard deve:
+- Buscar os dados da planilha publicada em CSV sempre que abrir.
+- Atualizar automaticamente a cada 5 minutos.
+- Manter cache local no localStorage para funcionar offline.
+- Se a leitura da planilha falhar, usar data/clientes.json como fallback.
+- Recalcular KPIs, metas, status, bairros, clientes, cobrança, visitas, comissão e relatórios com base nos dados atualizados.
+- Manter o PWA/offline funcionando.
+- Atualizar o texto "Última sincronização".
+- Não alterar o layout visual atual.

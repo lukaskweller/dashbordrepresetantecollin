@@ -1,15 +1,31 @@
 {
-  "name": "Collin Professional Dashboard 5.3",
-  "short_name": "Collin 5.3",
-  "start_url": "./index.html",
+  "name": "Collin Professional Dashboard Executive",
+  "short_name": "Collin Executive",
+  "description": "Central executiva comercial Collin Professional para gestão de clientes, metas, comissão e performance.",
+  "start_url": "./?v=executive",
+  "scope": "./",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#f7f3f1",
   "theme_color": "#C89080",
   "icons": [
     {
       "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512.svg",
       "sizes": "512x512",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ]
 }

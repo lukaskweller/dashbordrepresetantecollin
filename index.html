@@ -3,8 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Collin Professional Dashboard 6.0 Plus</title>
+<title>Collin Professional Dashboard Executive</title>
 <meta name="theme-color" content="#C89080">
+
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/icon-192.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Collin Executive">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,8 +18,15 @@
   <div class="login-card">
     <img src="assets/icon.svg" class="login-logo" alt="Collin Professional">
     <span class="login-eyebrow">Collin Professional</span>
-    <h1>Acesso ao Dashboard</h1>
-    <p>Painel executivo comercial do representante.</p>
+    <h1>Dashboard Executive</h1>
+    <div class="login-profile">
+      <img src="assets/lucas-mateus-profile.jpg" alt="Lucas Mateus">
+      <div>
+        <strong>Lucas Mateus</strong>
+        <span>Representante Comercial</span>
+      </div>
+    </div>
+    <p>Central de gestão comercial, carteira de clientes, metas e performance.</p>
     <form id="loginForm" class="login-form">
       <label>Usuário<input id="loginUser" autocomplete="username" placeholder="Lucas"></label>
       <label>Senha<input id="loginPass" type="password" autocomplete="current-password" placeholder="Senha"></label>
@@ -25,7 +38,15 @@
 
 <div class="app">
 <aside class="sidebar">
-  <div class="brand"><img src="assets/icon.svg" class="brand-logo" alt="Collin"><div><strong>Collin Professional</strong><span>Dashboard 6.0 Plus</span></div></div>
+  <div class="brand"><img src="assets/icon.svg" class="brand-logo" alt="Collin"><div><strong>Collin Professional</strong><span>Dashboard Executive</span></div></div>
+  <div class="rep-card">
+    <img src="assets/lucas-mateus-avatar.jpg" alt="Lucas Mateus">
+    <div>
+      <strong>Lucas Mateus</strong>
+      <span>Representante Comercial</span>
+      <small>Collin Professional</small>
+    </div>
+  </div>
   <nav id="nav">
     <button data-tab="home" class="active">🏠 Visão Geral</button>
     <button data-tab="clientes">👥 Clientes</button>
@@ -36,29 +57,39 @@
     <button data-tab="comissao">💰 Comissão</button>
     <button data-tab="performance">📈 Performance</button>
     <button data-tab="relatorio">📋 Relatório</button>
+    <button data-tab="perfil">🏆 Perfil Comercial</button>
   </nav>
   <div class="sync-card"><span></span><div><b>Base atualizada</b><small id="syncText">Carregando...</small></div></div>
 </aside>
 
 <main>
 <header class="topbar">
-  <div><span class="eyebrow">Dashboard Executivo</span><h1 id="pageTitle">Collin Professional</h1></div>
-  <div class="top-actions"><button class="btn secondary" id="reloadBtn">Atualizar</button><button class="btn secondary" id="logoutBtn">Sair</button><button class="btn" onclick="window.print()">PDF</button></div>
+  <div><span class="eyebrow">Collin Professional</span><h1 id="pageTitle">Dashboard Executive</h1></div>
+  <div class="top-actions"><button class="btn secondary" id="reloadBtn">Atualizar</button><button class="btn secondary" id="installBtn">Instalar no celular</button><button class="btn secondary" id="logoutBtn">Sair</button><button class="btn secondary" id="presentationBtn">Modo Reunião</button><button class="btn" onclick="window.print()">PDF</button></div>
 </header>
 
 <section class="hero">
   <div class="hero-left">
     <img src="assets/icon.svg" class="hero-logo" alt="Collin">
     <div>
-      <span class="hero-pill">DASHBOARD EXECUTIVO</span>
-      <h2>Collin Professional</h2>
-      <p>Indicadores estratégicos de clientes, recebimentos, metas, comissões e performance comercial.</p>
+      <span class="hero-pill">COLLIN PROFESSIONAL</span>
+      <h2>Dashboard Executive</h2>
+      <p>Central de gestão comercial, indicadores estratégicos, metas, comissões e performance da carteira.</p>
     </div>
   </div>
   <div class="hero-metrics">
     <div class="hero-card"><small>Meta Clientes</small><strong id="heroGoal">16/40</strong><div class="progress"><span id="heroProgress"></span></div></div>
     <div class="hero-card light"><small>Projeção Salarial</small><strong id="heroProjection">R$ 0,00</strong><span>Últimas 4 semanas</span></div>
   </div>
+</section>
+
+<section class="install-box" id="installBox">
+  <div>
+    <span class="eyebrow">App no celular</span>
+    <h3>Instale o Dashboard Executive no iPhone ou Android</h3>
+    <p>No iPhone: toque em <b>Compartilhar</b> no Safari e escolha <b>Adicionar à Tela de Início</b>. No Android, toque em <b>Instalar</b> quando aparecer.</p>
+  </div>
+  <button class="btn" id="installBoxBtn">Instalar</button>
 </section>
 
 <section id="home" class="tab active">
@@ -127,7 +158,35 @@
   <article class="panel"><div class="panel-head"><div><span class="eyebrow">Relatório</span><h3>Resumo semanal</h3></div><button class="btn" onclick="copyReport()">Copiar</button></div><pre id="reportText"></pre><a id="reportWhats" class="btn whatsapp" target="_blank">Abrir WhatsApp</a></article>
 </section>
 
-<footer><span>Collin Professional Dashboard 6.0 Plus</span><span id="footerUpdate"></span></footer>
+
+<section id="perfil" class="tab">
+  <div class="profile-hero">
+    <img src="assets/lucas-mateus-profile.jpg" alt="Lucas Mateus">
+    <div>
+      <span class="eyebrow">Perfil Comercial</span>
+      <h2>Lucas Mateus</h2>
+      <p>Representante Comercial • Collin Professional</p>
+      <div class="profile-badges">
+        <span>Gestão de Carteira</span>
+        <span>Performance Comercial</span>
+        <span>Relacionamento com Clientes</span>
+      </div>
+    </div>
+  </div>
+  <div class="kpi-grid" id="profileKpis"></div>
+  <div class="grid two">
+    <article class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">Território</span><h3>Top bairros da carteira</h3></div></div><canvas id="profileBairroChart" height="380"></canvas></article>
+    <article class="panel"><div class="panel-head"><div><span class="eyebrow">Resumo</span><h3>Identidade executiva</h3></div></div>
+      <div class="executive-summary">
+        <p><b>Projeto:</b> Collin Professional Dashboard Executive</p>
+        <p><b>Objetivo:</b> controle de clientes, metas, recebimentos, comissão e performance semanal.</p>
+        <p><b>Uso:</b> rotina comercial, reunião empresarial e apresentação de resultados.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer><span>© 2026 Collin Professional Dashboard Executive</span><span id="footerUpdate"></span></footer>
 </main>
 </div>
 <div id="toast" class="toast">Copiado</div>

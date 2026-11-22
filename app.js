@@ -3,7 +3,7 @@ const $=id=>document.getElementById(id);const money=v=>BRL.format(Number(v||0));
 let DATA=null;let CHARTS={};const tooltip=$('chartTooltip');
 const COLORS={collin:'#C89080',green:'#10B981',yellow:'#F59E0B',red:'#EF4444',blue:'#2563EB',dark:'#111827',muted:'#999999',line:'#eadfdb'};
 const SHEET_URL='https://docs.google.com/spreadsheets/d/1LfKj1DkDk2PDItrpmfImqdo9oGsvya1VdhV3ICzdpUU/gviz/tq?tqx=out:csv&gid=0';
-const LOGIN_KEY='collinLoginActive60';const LOGIN_PASS_KEY='collinLoginPass60';const LOGIN_USER_KEY='collinLoginUser60';
+const LOGIN_KEY='collinLoginActiveExecutive';const LOGIN_PASS_KEY='collinLoginPassExecutive';const LOGIN_USER_KEY='collinLoginUserExecutive';
 
 function safe(v){return String(v==null?'':v)}
 function initLogin(){const screen=$('loginScreen'),form=$('loginForm');if($('loginUser'))$('loginUser').value=localStorage.getItem(LOGIN_USER_KEY)||'Lucas';if(localStorage.getItem(LOGIN_KEY)==='yes'){screen?.classList.add('hide');document.body.classList.remove('locked')}else{screen?.classList.remove('hide');document.body.classList.add('locked')}if(form)form.onsubmit=e=>{e.preventDefault();const user=($('loginUser')?.value||'Lucas').trim();const pass=$('loginPass')?.value||'';const saved=localStorage.getItem(LOGIN_PASS_KEY)||'collin2026';if(pass===saved){localStorage.setItem(LOGIN_KEY,'yes');localStorage.setItem(LOGIN_USER_KEY,user);screen.classList.add('hide');document.body.classList.remove('locked');showToast('Bem-vindo, '+user)}else alert('Senha incorreta.')};if($('logoutBtn'))$('logoutBtn').onclick=()=>{localStorage.removeItem(LOGIN_KEY);location.reload()}}
@@ -27,8 +27,30 @@ function msg(c,t='cobranca'){if(t==='visita')return`Olá, ${c.nome}! Tudo bem? S
 function whats(c,t){return 'https://wa.me/?text='+encodeURIComponent(msg(c,t))}
 function maps(c){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(c.bairro+' Santa Catarina')}
 function actions(c,t){return`<div class="actions"><a class="btn whatsapp" target="_blank" href="${whats(c,t)}">Whats</a><button class="btn dark" onclick="copyText(msg(DATA.clientes.find(x=>x.id===${c.id}),'${t||'cobranca'}'))">Copiar</button><a class="btn blue" target="_blank" href="${maps(c)}">Mapa</a></div>`}
-function tab(id){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));$('pageTitle').textContent={home:'Collin Professional',clientes:'Clientes',bairros:'Bairros',cobranca:'Cobrança',visitas:'Visitas',metas:'Metas',comissao:'Comissão',performance:'Performance',relatorio:'Relatório'}[id];setTimeout(drawAll,80)}
-function renderAll(){renderKpis();renderSmart();renderClientes();renderBairros();renderCobranca();renderVisitas();renderMetas();renderComissao();renderPerformance();renderReport();drawAll();$('footerUpdate').textContent='Atualizado em '+new Date(DATA.updatedAt).toLocaleString('pt-BR');$('syncText').textContent=DATA.kpis.clientes+' clientes • '+(DATA.source||'base local');$('heroProjection').textContent=money(DATA.kpis.projecaoSalarioMes)}
+function tab(id){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));$('pageTitle').textContent={home:'Dashboard Executive',clientes:'Clientes',bairros:'Bairros',cobranca:'Cobrança',visitas:'Visitas',metas:'Metas',comissao:'Comissão',performance:'Performance',relatorio:'Relatório',perfil:'Perfil Comercial'}[id];setTimeout(drawAll,80)}
+
+function renderProfile(){
+  const k=DATA.kpis;
+  const cards=[
+    ['Clientes na carteira',k.clientes,'Base total'],
+    ['Clientes ativos',k.ativos,'Em operação'],
+    ['Recebido semana',money(k.recebidoSemana),'Parcelas pagas'],
+    ['Comissão semana',money(k.comissaoSemana),'15% + ajuda custo']
+  ];
+  const box=$('profileKpis');
+  if(box)box.innerHTML=cards.map(c=>`<article class="kpi"><small>${c[0]}</small><b>${c[1]}</b><span>${c[2]}</span></article>`).join('');
+}
+function initPresentationMode(){
+  const btn=$('presentationBtn');
+  if(!btn)return;
+  btn.onclick=()=>{
+    document.body.classList.toggle('presentation-mode');
+    btn.textContent=document.body.classList.contains('presentation-mode')?'Sair Reunião':'Modo Reunião';
+    setTimeout(drawAll,120);
+  };
+}
+
+function renderAll(){renderKpis();renderSmart();renderClientes();renderBairros();renderCobranca();renderVisitas();renderMetas();renderComissao();renderPerformance();renderReport();renderProfile();drawAll();$('footerUpdate').textContent='Atualizado em '+new Date(DATA.updatedAt).toLocaleString('pt-BR');$('syncText').textContent=DATA.kpis.clientes+' clientes • '+(DATA.source||'base local');$('heroProjection').textContent=money(DATA.kpis.projecaoSalarioMes)}
 function renderKpis(){const k=DATA.kpis,g=DATA.goals;const cards=[['Clientes',k.clientes,'Todos cadastrados'],['Ativos',k.ativos,'Pago + Não pago + Cobrar'],['Inativos',k.inativos,'Quitados'],['Recebido semana',money(k.recebidoSemana),'Parcelas pagas'],['Carteira',money(k.carteira),'Total carteira'],['Devedor',money(k.devedor),'Saldo aberto'],['Comissão semana',money(k.comissaoSemana),'15% + ajuda custo'],['Visitas',k.visitasCarteiraBaixa,'Carteira entre R$0 e R$150']];$('homeKpis').innerHTML=cards.map(c=>`<article class="kpi"><small>${c[0]}</small><b>${c[1]}</b><span>${c[2]}</span></article>`).join('');$('heroGoal').textContent=`${g.clientesAbertos}/${g.clientesMeta}`;$('heroProgress').style.width=g.clientesProgresso+'%'}
 function renderSmart(){const k=DATA.kpis;const cards=[['Maior devedor',`${k.maiorDevedor?.nome||'-'} — ${money(k.maiorDevedor?.saldoDevedor)}`],['Maior parcela',`${k.maiorParcela?.nome||'-'} — ${money(k.maiorParcela?.valorParcela)}`],['Ticket médio',money(k.ticketMedio)],['Projeção salário mês',money(k.projecaoSalarioMes)]];$('smartCards').innerHTML=cards.map(c=>`<article class="card"><small>${c[0]}</small><b>${c[1]}</b></article>`).join('')}
 function renderClientes(){const q=($('searchInput').value||'').toLowerCase();const list=DATA.clientes.filter(c=>(c.cliente+' '+c.bairro+' '+c.status).toLowerCase().includes(q));$('clientRows').innerHTML=list.map(c=>`<tr><td><b>${c.nome}</b><br><small>${c.cliente}</small></td><td>${c.bairro}</td><td>${money(c.saldoCarteira)}</td><td>${money(c.saldoDevedor)}</td><td>${money(c.valorParcela)}</td><td><span class="status ${cls(c.status)}">${c.status}</span></td><td>${actions(c)}</td></tr>`).join('')}
@@ -38,10 +60,10 @@ function renderVisitas(){$('visitaCards').innerHTML=DATA.visitas.map(c=>`<articl
 function renderMetas(){const k=DATA.kpis,g=DATA.goals;const sem=(k.recebidoSemana/g.recebimentoMetaSemanal*100).toFixed(1);const mes=(k.recebidoSemana/g.recebimentoMetaMensal*100).toFixed(1);const sal=(k.comissaoUltimas4/g.salarioMetaMensal*100).toFixed(1);const cards=[['Clientes abertos',`${g.clientesAbertos}/${g.clientesMeta}`,`${g.clientesProgresso}%`],['Meta semanal',`${money(k.recebidoSemana)} / ${money(g.recebimentoMetaSemanal)}`,`${sem}%`],['Meta mensal',`${money(k.recebidoSemana)} / ${money(g.recebimentoMetaMensal)}`,`${mes}%`],['Salário últimas 4',`${money(k.comissaoUltimas4)} / ${money(g.salarioMetaMensal)}`,`${sal}%`]];$('metaCards').innerHTML=cards.map(c=>`<article class="kpi"><small>${c[0]}</small><b>${c[1]}</b><span>${c[2]}</span></article>`).join('')}
 function renderComissao(){const k=DATA.kpis,g=DATA.goals;const cards=[['Comissão semana',money(k.comissaoSemana),'15% das parcelas + R$375'],['Ajuda custo',money(g.ajudaCusto),'Fixo'],['Últimas 4 semanas',money(k.comissaoUltimas4),'Conta com a atual'],['Média últimas 4',money(k.mediaComissaoUltimas4),'Base projeção'],['Projeção mês',money(k.projecaoSalarioMes),'Média × 4'],['Meta salário',money(g.salarioMetaMensal),'Objetivo'],['Faltante',money(Math.max(g.salarioMetaMensal-k.comissaoUltimas4,0)),'Para meta'],['% Meta',((k.comissaoUltimas4/g.salarioMetaMensal)*100).toFixed(1)+'%','Últimas 4']];$('comissaoKpis').innerHTML=cards.map(c=>`<article class="kpi"><small>${c[0]}</small><b>${c[1]}</b><span>${c[2]}</span></article>`).join('')}
 function renderPerformance(){const k=DATA.kpis,g=DATA.goals;const cards=[['Evolução semanal','5 semanas','Histórico'],['Projeção final',money(k.projecaoSalarioMes),'Média últimas 4'],['Salário atual',money(k.comissaoUltimas4),'Últimas 4 semanas'],['Meta salário',money(g.salarioMetaMensal),'Objetivo']];$('performanceKpis').innerHTML=cards.map(c=>`<article class="kpi"><small>${c[0]}</small><b>${c[1]}</b><span>${c[2]}</span></article>`).join('')}
-function renderReport(){const k=DATA.kpis,g=DATA.goals;const text=`Relatório Collin Professional 6.0 Plus\n\nClientes: ${k.clientes}\nAtivos: ${k.ativos}\nInativos/quitados: ${k.inativos}\n\nCarteira: ${money(k.carteira)}\nDevedor: ${money(k.devedor)}\nRecebido semana: ${money(k.recebidoSemana)}\n\nComissão semana: ${money(k.comissaoSemana)}\nRegra: 15% das parcelas pagas + ${money(g.ajudaCusto)} ajuda custo\nÚltimas 4 semanas: ${money(k.comissaoUltimas4)}\nProjeção mês: ${money(k.projecaoSalarioMes)}\n\nCobrança: ${k.atrasados} não pagos / ${k.cobrar} cobrar próxima semana\nVisitas: ${k.visitasCarteiraBaixa} clientes com carteira entre R$0 e R$150`;$('reportText').textContent=text;$('reportWhats').href='https://wa.me/?text='+encodeURIComponent(text)}
+function renderReport(){const k=DATA.kpis,g=DATA.goals;const text=`Relatório Collin Professional Dashboard Executive\n\nClientes: ${k.clientes}\nAtivos: ${k.ativos}\nInativos/quitados: ${k.inativos}\n\nCarteira: ${money(k.carteira)}\nDevedor: ${money(k.devedor)}\nRecebido semana: ${money(k.recebidoSemana)}\n\nComissão semana: ${money(k.comissaoSemana)}\nRegra: 15% das parcelas pagas + ${money(g.ajudaCusto)} ajuda custo\nÚltimas 4 semanas: ${money(k.comissaoUltimas4)}\nProjeção mês: ${money(k.projecaoSalarioMes)}\n\nCobrança: ${k.atrasados} não pagos / ${k.cobrar} cobrar próxima semana\nVisitas: ${k.visitasCarteiraBaixa} clientes com carteira entre R$0 e R$150`;$('reportText').textContent=text;$('reportWhats').href='https://wa.me/?text='+encodeURIComponent(text)}
 function copyReport(){copyText($('reportText').textContent)}
 
-function drawAll(){if(!DATA)return;drawDonut('statusChart',DATA.statusCounts);drawBar('financeChart',['Carteira','Devedor','Recebido'],[DATA.kpis.carteira,DATA.kpis.devedor,DATA.kpis.recebidoSemana],{money:true,colors:[COLORS.collin,COLORS.red,COLORS.green]});drawBar('rankClientesChart',DATA.rankClientesBairro.slice(0,10).map(b=>b.bairro),DATA.rankClientesBairro.slice(0,10).map(b=>b.clientes),{horizontal:true});drawBar('rankVendasChart',DATA.rankVendasBairro.slice(0,10).map(b=>b.bairro),DATA.rankVendasBairro.slice(0,10).map(b=>b.vendas),{horizontal:true,money:true,color:COLORS.green});drawBar('bairroChart',DATA.bairros.slice(0,12).map(b=>b.bairro),DATA.bairros.slice(0,12).map(b=>b.vendas),{horizontal:true,money:true});drawGrouped('bairroCompareChart',DATA.bairros.slice(0,8).map(b=>b.bairro),DATA.bairros.slice(0,8).map(b=>b.vendas),DATA.bairros.slice(0,8).map(b=>b.devedor));drawRadar('metasRadarChart',['Clientes','Receb. sem.','Receb. mês','Salário'],[DATA.goals.clientesProgresso,DATA.kpis.recebidoSemana/DATA.goals.recebimentoMetaSemanal*100,DATA.kpis.recebidoSemana/DATA.goals.recebimentoMetaMensal*100,DATA.kpis.comissaoUltimas4/DATA.goals.salarioMetaMensal*100]);drawBar('metasRecebChart',['Recebido','Meta Sem.','Meta Mês'],[DATA.kpis.recebidoSemana,DATA.goals.recebimentoMetaSemanal,DATA.goals.recebimentoMetaMensal],{money:true,colors:[COLORS.green,COLORS.yellow,COLORS.collin]});drawLine('comissaoLineChart',DATA.last4SalaryWeeks.map(w=>w.semana),DATA.last4SalaryWeeks.map(w=>w.comissao),{money:true});drawDonut('comissaoRuleChart',{'15% Parcelas':DATA.kpis.recebidoSemana*.15,'Ajuda custo':DATA.goals.ajudaCusto});drawLine('performanceChart',DATA.salaryWeeks.map(w=>w.semana),DATA.salaryWeeks.map(w=>w.comissao),{money:true,trend:true});drawBar('projectionChart',['Atual 4 sem.','Projeção','Meta'],[DATA.kpis.comissaoUltimas4,DATA.kpis.projecaoSalarioMes,DATA.goals.salarioMetaMensal],{money:true,colors:[COLORS.collin,COLORS.blue,COLORS.green]})}
+function drawAll(){if(!DATA)return;drawDonut('statusChart',DATA.statusCounts);drawBar('financeChart',['Carteira','Devedor','Recebido'],[DATA.kpis.carteira,DATA.kpis.devedor,DATA.kpis.recebidoSemana],{money:true,colors:[COLORS.collin,COLORS.red,COLORS.green]});drawBar('rankClientesChart',DATA.rankClientesBairro.slice(0,10).map(b=>b.bairro),DATA.rankClientesBairro.slice(0,10).map(b=>b.clientes),{horizontal:true});drawBar('rankVendasChart',DATA.rankVendasBairro.slice(0,10).map(b=>b.bairro),DATA.rankVendasBairro.slice(0,10).map(b=>b.vendas),{horizontal:true,money:true,color:COLORS.green});drawBar('bairroChart',DATA.bairros.slice(0,12).map(b=>b.bairro),DATA.bairros.slice(0,12).map(b=>b.vendas),{horizontal:true,money:true});drawGrouped('bairroCompareChart',DATA.bairros.slice(0,8).map(b=>b.bairro),DATA.bairros.slice(0,8).map(b=>b.vendas),DATA.bairros.slice(0,8).map(b=>b.devedor));drawRadar('metasRadarChart',['Clientes','Receb. sem.','Receb. mês','Salário'],[DATA.goals.clientesProgresso,DATA.kpis.recebidoSemana/DATA.goals.recebimentoMetaSemanal*100,DATA.kpis.recebidoSemana/DATA.goals.recebimentoMetaMensal*100,DATA.kpis.comissaoUltimas4/DATA.goals.salarioMetaMensal*100]);drawBar('metasRecebChart',['Recebido','Meta Sem.','Meta Mês'],[DATA.kpis.recebidoSemana,DATA.goals.recebimentoMetaSemanal,DATA.goals.recebimentoMetaMensal],{money:true,colors:[COLORS.green,COLORS.yellow,COLORS.collin]});drawLine('comissaoLineChart',DATA.last4SalaryWeeks.map(w=>w.semana),DATA.last4SalaryWeeks.map(w=>w.comissao),{money:true});drawDonut('comissaoRuleChart',{'15% Parcelas':DATA.kpis.recebidoSemana*.15,'Ajuda custo':DATA.goals.ajudaCusto});drawLine('performanceChart',DATA.salaryWeeks.map(w=>w.semana),DATA.salaryWeeks.map(w=>w.comissao),{money:true,trend:true});drawBar('projectionChart',['Atual 4 sem.','Projeção','Meta'],[DATA.kpis.comissaoUltimas4,DATA.kpis.projecaoSalarioMes,DATA.goals.salarioMetaMensal],{money:true,colors:[COLORS.collin,COLORS.blue,COLORS.green]});drawBar('profileBairroChart',DATA.rankVendasBairro.slice(0,8).map(b=>b.bairro),DATA.rankVendasBairro.slice(0,8).map(b=>b.vendas),{horizontal:true,money:true,color:COLORS.collin})}
 function setupCanvas(id){const c=$(id);if(!c)return null;const ctx=c.getContext('2d'),dpr=devicePixelRatio||1,w=c.clientWidth||600,h=Number(c.getAttribute('height')||300);c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);CHARTS[id]=[];c.onmousemove=e=>showTip(e,id);c.onmouseleave=hideTip;return{c,ctx,w,h}}
 function addHit(id,x,y,w,h,label){CHARTS[id].push({x,y,w,h,label})}
 function showTip(e,id){const rect=$(id).getBoundingClientRect(),x=e.clientX-rect.left,y=e.clientY-rect.top,hit=(CHARTS[id]||[]).find(p=>x>=p.x&&x<=p.x+p.w&&y>=p.y&&y<=p.y+p.h);if(hit){tooltip.textContent=hit.label;tooltip.style.left=e.clientX+'px';tooltip.style.top=e.clientY+'px';tooltip.style.opacity=1}else hideTip()}
@@ -53,4 +75,34 @@ function drawDonut(id,obj){const s=setupCanvas(id);if(!s)return;const{ctx,w,h}=s
 function drawRadar(id,labels,values){const s=setupCanvas(id);if(!s)return;const{ctx,w,h}=s,cx=w/2,cy=h/2,r=Math.min(w,h)*.32,max=100,n=labels.length;ctx.strokeStyle=COLORS.line;for(let level=1;level<=4;level++){ctx.beginPath();for(let i=0;i<n;i++){const ang=-Math.PI/2+i*2*Math.PI/n,rr=r*level/4,x=cx+Math.cos(ang)*rr,y=cy+Math.sin(ang)*rr;i?ctx.lineTo(x,y):ctx.moveTo(x,y)}ctx.closePath();ctx.stroke()}ctx.beginPath();values.forEach((v,i)=>{const ang=-Math.PI/2+i*2*Math.PI/n,rr=r*Math.min(v,max)/max,x=cx+Math.cos(ang)*rr,y=cy+Math.sin(ang)*rr;i?ctx.lineTo(x,y):ctx.moveTo(x,y);addHit(id,x-12,y-12,24,24,`${labels[i]}: ${v.toFixed(1)}%`)});ctx.closePath();ctx.fillStyle='rgba(200,144,128,.25)';ctx.fill();ctx.strokeStyle=COLORS.collin;ctx.lineWidth=3;ctx.stroke();labels.forEach((l,i)=>{const ang=-Math.PI/2+i*2*Math.PI/n,x=cx+Math.cos(ang)*(r+35),y=cy+Math.sin(ang)*(r+25);ctx.fillStyle=COLORS.dark;ctx.font='bold 12px Arial';ctx.textAlign='center';ctx.fillText(l,x,y)})}
 function round(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
 function compact(v){return v>=1000?'R$ '+(v/1000).toFixed(1)+'k':money(v)}
-document.querySelectorAll('#nav button').forEach(btn=>btn.onclick=()=>tab(btn.dataset.tab));$('searchInput').oninput=renderClientes;$('reloadBtn').onclick=load;window.addEventListener('resize',()=>setTimeout(drawAll,120));initLogin();load();
+document.querySelectorAll('#nav button').forEach(btn=>btn.onclick=()=>tab(btn.dataset.tab));$('searchInput').oninput=renderClientes;$('reloadBtn').onclick=load;window.addEventListener('resize',()=>setTimeout(drawAll,120));initLogin();initPWAInstall();initPresentationMode();load();
+
+let deferredInstallPrompt=null;
+function initPWAInstall(){
+  const installBtn=$('installBtn');
+  const installBoxBtn=$('installBoxBtn');
+  const installBox=$('installBox');
+  window.addEventListener('beforeinstallprompt',(e)=>{
+    e.preventDefault();
+    deferredInstallPrompt=e;
+    if(installBox)installBox.classList.remove('hide');
+  });
+  async function runInstall(){
+    if(deferredInstallPrompt){
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt=null;
+      if(installBox)installBox.classList.add('hide');
+    }else{
+      alert('No iPhone: abra no Safari, toque em Compartilhar e depois em “Adicionar à Tela de Início”.');
+    }
+  }
+  if(installBtn)installBtn.onclick=runInstall;
+  if(installBoxBtn)installBoxBtn.onclick=runInstall;
+  if(window.matchMedia('(display-mode: standalone)').matches && installBox){
+    installBox.classList.add('hide');
+  }
+}
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js').catch(console.warn));
+}

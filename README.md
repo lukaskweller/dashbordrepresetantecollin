@@ -25,3 +25,38 @@ Inativos: 46
 Carteira: 31314.1
 Devedor: 26024.5
 Recebido semana: 5054.7
+
+
+## Versão 6.1 Plus PWA
+- Adicionado manifest.webmanifest
+- Adicionado service-worker.js
+- Adicionado ícone para iPhone/Android
+- Botão "Instalar no celular"
+- Funciona como app instalado na tela inicial
+
+Como instalar no iPhone:
+1. Abra o site pelo Safari.
+2. Toque no botão Compartilhar.
+3. Toque em "Adicionar à Tela de Início".
+4. O app aparecerá com o logo da Collin.
+
+Abra após subir:
+https://lukaskweller.github.io/dashbordrepresetantecollin/?v=61
+
+
+# Collin Professional Dashboard Executive
+
+Versão final executiva:
+- Nome oficial: Collin Professional Dashboard Executive
+- Foto do representante no login, menu lateral e perfil comercial
+- Aba Perfil Comercial
+- Modo Reunião
+- PWA instalável com logo Collin
+- Login local
+- Base atualizada em data/clientes.json
+
+Senha padrão:
+collin2026
+
+Abra no GitHub Pages:
+https://lukaskweller.github.io/dashbordrepresetantecollin/?v=executive

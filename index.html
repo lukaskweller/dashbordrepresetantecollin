@@ -2,15 +2,30 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Collin Professional Dashboard 5.4</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Collin Professional Dashboard 6.0 Plus</title>
 <meta name="theme-color" content="#C89080">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <img src="assets/icon.svg" class="login-logo" alt="Collin Professional">
+    <span class="login-eyebrow">Collin Professional</span>
+    <h1>Acesso ao Dashboard</h1>
+    <p>Painel executivo comercial do representante.</p>
+    <form id="loginForm" class="login-form">
+      <label>Usuário<input id="loginUser" autocomplete="username" placeholder="Lucas"></label>
+      <label>Senha<input id="loginPass" type="password" autocomplete="current-password" placeholder="Senha"></label>
+      <button class="btn" type="submit">Entrar</button>
+      <small>Senha padrão: <b>collin2026</b></small>
+    </form>
+  </div>
+</div>
+
 <div class="app">
 <aside class="sidebar">
-  <div class="brand"><div class="brand-mark">CP</div><div><strong>Collin Professional</strong><span>Executive Stable 5.4</span></div></div>
+  <div class="brand"><img src="assets/icon.svg" class="brand-logo" alt="Collin"><div><strong>Collin Professional</strong><span>Dashboard 6.0 Plus</span></div></div>
   <nav id="nav">
     <button data-tab="home" class="active">🏠 Visão Geral</button>
     <button data-tab="clientes">👥 Clientes</button>
@@ -22,21 +37,28 @@
     <button data-tab="performance">📈 Performance</button>
     <button data-tab="relatorio">📋 Relatório</button>
   </nav>
-  <div class="sync-card"><span></span><div><b>Base segura</b><small id="syncText">Carregando...</small></div></div>
+  <div class="sync-card"><span></span><div><b>Base atualizada</b><small id="syncText">Carregando...</small></div></div>
 </aside>
+
 <main>
 <header class="topbar">
-  <div><span class="eyebrow">Representante Collin Professional</span><h1 id="pageTitle">Visão Geral</h1></div>
-  <div class="top-actions"><button class="btn secondary" id="reloadBtn">Atualizar</button><button class="btn" onclick="window.print()">Exportar PDF</button></div>
+  <div><span class="eyebrow">Dashboard Executivo</span><h1 id="pageTitle">Collin Professional</h1></div>
+  <div class="top-actions"><button class="btn secondary" id="reloadBtn">Atualizar</button><button class="btn secondary" id="logoutBtn">Sair</button><button class="btn" onclick="window.print()">PDF</button></div>
 </header>
 
 <section class="hero">
-  <div>
-    <span class="hero-pill">Layout premium • sem dependência externa • GitHub Pages safe</span>
-    <h2>Gestão comercial clara, moderna e estável</h2>
-    <p>Abre com dados locais corretos e tenta AutoSync com Google Sheets sem travar a página.</p>
+  <div class="hero-left">
+    <img src="assets/icon.svg" class="hero-logo" alt="Collin">
+    <div>
+      <span class="hero-pill">DASHBOARD EXECUTIVO</span>
+      <h2>Collin Professional</h2>
+      <p>Indicadores estratégicos de clientes, recebimentos, metas, comissões e performance comercial.</p>
+    </div>
   </div>
-  <div class="hero-card"><small>Meta clientes</small><strong id="heroGoal">16/40</strong><div class="progress"><span id="heroProgress"></span></div></div>
+  <div class="hero-metrics">
+    <div class="hero-card"><small>Meta Clientes</small><strong id="heroGoal">16/40</strong><div class="progress"><span id="heroProgress"></span></div></div>
+    <div class="hero-card light"><small>Projeção Salarial</small><strong id="heroProjection">R$ 0,00</strong><span>Últimas 4 semanas</span></div>
+  </div>
 </section>
 
 <section id="home" class="tab active">
@@ -105,7 +127,7 @@
   <article class="panel"><div class="panel-head"><div><span class="eyebrow">Relatório</span><h3>Resumo semanal</h3></div><button class="btn" onclick="copyReport()">Copiar</button></div><pre id="reportText"></pre><a id="reportWhats" class="btn whatsapp" target="_blank">Abrir WhatsApp</a></article>
 </section>
 
-<footer><span>Collin Professional Dashboard 5.4</span><span id="footerUpdate"></span></footer>
+<footer><span>Collin Professional Dashboard 6.0 Plus</span><span id="footerUpdate"></span></footer>
 </main>
 </div>
 <div id="toast" class="toast">Copiado</div>
